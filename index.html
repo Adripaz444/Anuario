@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuario IPC 2026</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <img src="logoipc.jpg" alt="IPC" class="logo">
+        <button class="menu-btn" onclick="abrirMenu()">
+            ☰
+        </button>
+
+    </header>
+    <nav id="menuLateral">
+        <button class="cerrar" onclick="cerrarMenu()">✕</button>
+        <a href="index.html">Inicio</a>
+        <a href="historia de la Promo.html">Historia de la Promoción</a>
+        <a href="Docentes.html">Docentes</a>
+        <a href="Estudiantes.html">Estudiantes</a>
+        <a href="Galería.html">Galería Fotográfica</a>
+        <a href="Actividades Destacadas.html">Actividades Destacadas</a>
+        <a href="Logros.html">Logros</a>
+        <a href="Recuerdos.html">Recuerdos</a>
+        <a href="Buscador.html">Buscador</a>
+        <a href="Créditos.html">Créditos</a>
+    </nav>
+
+    <main>
+        <section class="inicio">
+            <h1 class="titulo">
+                Anuario
+            </h1>
+            <h2 class="anio">
+                2026
+            </h2>
+            <a href="Historia de la Promo.html" class="boton">
+                Ingresar al Anuario
+            </a>
+        </section>
+    </main>
+
+<script>
+const menu=document.getElementById("menuLateral");
+function abrirMenu(){
+    menu.style.right="0";
+}
+function cerrarMenu(){
+    menu.style.right="-320px";
+}
+</script>
+
+</body>
+</html>
