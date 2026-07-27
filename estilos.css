@@ -417,6 +417,3 @@ width:260px;
     color:var(--azulOscuro);
     margin-bottom:40px;
 }
-html{
-    scroll-behavior: smooth;
-}
