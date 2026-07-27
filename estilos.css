@@ -253,3 +253,56 @@ width:260px;
         transform:translateY(0);
     }
 }
+
+/*PAGINA DE DOCENTES LO QUE SEA DE DOCENTES EDITAR DE AQUI PARA ABAJO HASTA EL SIGUIENTE COMENTARIO-SECCION*/
+
+.pagina{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:40px 0 80px;
+}
+
+.tituloPagina{
+    text-align:center;
+    font-size:50px;
+    color:var(--azulOscuro);
+    margin-bottom:10px;
+}
+
+.subtituloPagina{
+    text-align:center;
+    color:#666;
+    margin-bottom:60px;
+}
+
+.contenedorOpciones{
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    flex-wrap:wrap;
+}
+
+.opcion{
+    width:350px;
+    height:220px;
+    background:white;
+    border-radius:25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    color:var(--azulOscuro);
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+    transition:.3s;
+}
+
+.opcion:hover{
+    transform:translateY(-8px);
+    background:var(--celeste);
+}
+
+.opcion h2{
+    font-size:35px;
+    letter-spacing:2px;
+}
