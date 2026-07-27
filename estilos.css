@@ -324,9 +324,10 @@ width:260px;
 }
 
 .gridCards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 50px;
 }
 
 .card{
