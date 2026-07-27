@@ -306,3 +306,60 @@ width:260px;
     font-size:35px;
     letter-spacing:2px;
 }
+/*pagina de los docentes de la mañana*/
+
+.contenedor{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+    padding-bottom:70px;
+}
+
+.volver{
+    display:inline-block;
+    margin:20px 0;
+    text-decoration:none;
+    color:var(--azulOscuro);
+    font-weight:bold;
+}
+
+.gridCards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:35px;
+    margin-top:50px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.cardInfo{
+    padding:20px;
+    text-align:center;
+}
+
+.cardInfo h3{
+    color:var(--azulOscuro);
+    margin-bottom:10px;
+    font-size:22px;
+}
+
+.cardInfo p{
+    color:#666;
+    font-size:17px;
+}
