@@ -363,3 +363,60 @@ width:260px;
     color:#666;
     font-size:17px;
 }
+
+/*Estudiantes de la mañana*/
+
+.selectorGrados{
+    margin:50px 0;
+}
+
+.grado{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.grado h3{
+    color:var(--azulOscuro);
+    margin-bottom:20px;
+    letter-spacing:2px;
+}
+
+.botonesSeccion{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.botonesSeccion a{
+    width:60px;
+    height:60px;
+    background:white;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    color:var(--azulOscuro);
+    font-weight:bold;
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+    transition:.3s;
+}
+
+.botonesSeccion a:hover{
+    background:var(--celeste);
+    transform:translateY(-5px);
+}
+
+.gradoSeccion{
+    margin-top:80px;
+}
+
+.gradoSeccion h2{
+    text-align:center;
+    color:var(--azulOscuro);
+    margin-bottom:40px;
+}
+html{
+    scroll-behavior: smooth;
+}
