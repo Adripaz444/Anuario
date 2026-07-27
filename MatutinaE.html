@@ -1,82 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anuario IPC 2026</title>
+    <title>Estudiantes Matutina | Anuario IPC 2026</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
-<body>
-    <header>
-        <img src="logoipc.jpg" alt="IPC" class="logo">
-        <button class="menu-btn" onclick="abrirMenu()">
-            ☰
-        </button>
 
-    </header>
-    <nav id="menuLateral">
-        <button class="cerrar" onclick="cerrarMenu()">✕</button>
-        <a href="index.html">Inicio</a>
-        <a href="Historia de la Promo.html">Historia de la Promoción</a>
-        <a href="Docentes.html">Docentes</a>
-        <a href="Estudiantes.html">Estudiantes</a>
-        <a href="Galería.html">Galería Fotográfica</a>
-        <a href="Actividades Destacadas.html">Actividades Destacadas</a>
-        <a href="Logros.html">Logros</a>
-        <a href="Recuerdos.html">Recuerdos</a>
-        <a href="Buscador.html">Buscador</a>
-        <a href="Créditos.html">Créditos</a>
-    </nav>
-    <main class="contenedor">
-    <a href="Estudiantes.html" class="volver">← Volver</a>
-    <h1 class="tituloPagina">Estudiantes</h1>
-    <h2 class="subtituloPagina">Jornada Matutina</h2>
-        <section class="selectorGrados">
+<body>
+
+<header>
+
+    <a href="index.html">
+        <img src="logoipc.jpg" alt="IPC" class="logo">
+    </a>
+
+    <button class="menu-btn" onclick="abrirMenu()">
+        ☰
+    </button>
+
+</header>
+
+<nav id="menuLateral">
+
+    <button class="cerrar" onclick="cerrarMenu()">✕</button>
+
+    <a href="index.html">Inicio</a>
+    <a href="Historia de la Promo.html">Historia de la Promoción</a>
+    <a href="Docentes.html">Docentes</a>
+    <a href="Estudiantes.html">Estudiantes</a>
+    <a href="Galería.html">Galería Fotográfica</a>
+    <a href="Actividades Destacadas.html">Actividades Destacadas</a>
+    <a href="Logros.html">Logros</a>
+    <a href="Recuerdos.html">Recuerdos</a>
+    <a href="Buscador.html">Buscador</a>
+    <a href="Créditos.html">Créditos</a>
+
+</nav>
+
+<main class="contenedor">
+
+<a href="Estudiantes.html" class="volver">← Volver</a>
+
+<h1 class="tituloPagina">Estudiantes</h1>
+
+<h2 class="subtituloPagina">Jornada Matutina</h2>
+
+<section class="selectorGrados">
 
     <div class="grado">
+
         <h3>PRIMERO</h3>
+
         <div class="botonesSeccion">
+
             <a href="#1A">A</a>
             <a href="#1B">B</a>
+
         </div>
+
     </div>
-            
+
     <div class="grado">
+
         <h3>SEGUNDO</h3>
+
         <div class="botonesSeccion">
+
             <a href="#2A">A</a>
             <a href="#2B">B</a>
+
         </div>
+
     </div>
 
     <div class="grado">
+
         <h3>TERCERO</h3>
+
         <div class="botonesSeccion">
+
             <a href="#3A">A</a>
             <a href="#3B">B</a>
+
         </div>
+
     </div>
 
     <div class="grado">
+
         <h3>CUARTO</h3>
+
         <div class="botonesSeccion">
+
             <a href="#4A">A</a>
             <a href="#4B">B</a>
             <a href="#4D">D</a>
+
         </div>
+
     </div>
+
 </section>
 
-        
- <script>
+<section id="1A" class="gradoSeccion">
+
+<h2>Primero "A"</h2>
+
+<section class="gridCards">
+
+<div class="card">
+
+<img src="" alt="Alumno">
+
+<div class="cardInfo">
+
+<h3>Nombre del estudiante</h3>
+
+<p>1ro "A"</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="" alt="Alumno">
+
+<div class="cardInfo">
+
+<h3>Nombre del estudiante</h3>
+
+<p>1ro "A"</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="" alt="Alumno">
+
+<div class="cardInfo">
+
+<h3>Nombre del estudiante</h3>
+
+<p>1ro "A"</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="" alt="Alumno">
+
+<div class="cardInfo">
+
+<h3>Nombre del estudiante</h3>
+
+<p>1ro "A"</p>
+
+</div>
+
+</div>
+
+</section>
+
+</section>
+
+</main>
+
+<script>
+
 const menu=document.getElementById("menuLateral");
+
 function abrirMenu(){
     menu.style.right="0";
 }
+
 function cerrarMenu(){
     menu.style.right="-320px";
 }
 
 </script>
+
 </body>
 </html>
