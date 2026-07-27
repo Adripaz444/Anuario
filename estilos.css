@@ -365,6 +365,9 @@ width:260px;
 }
 
 /*Estudiantes de la mañana*/
+html{
+    scroll-behavior:smooth;
+}
 
 .selectorGrados{
     margin:50px 0;
@@ -391,16 +394,16 @@ width:260px;
 .botonesSeccion a{
     width:60px;
     height:60px;
-    background:white;
-    border-radius:15px;
     display:flex;
     justify-content:center;
     align-items:center;
     text-decoration:none;
     color:var(--azulOscuro);
-    font-weight:bold;
+    background:white;
+    border-radius:15px;
     box-shadow:0 5px 15px rgba(0,0,0,.12);
     transition:.3s;
+    font-weight:bold;
 }
 
 .botonesSeccion a:hover{
@@ -414,6 +417,6 @@ width:260px;
 
 .gradoSeccion h2{
     text-align:center;
-    color:var(--azulOscuro);
     margin-bottom:40px;
+    color:var(--azulOscuro);
 }
