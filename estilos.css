@@ -420,3 +420,45 @@ html{
     margin-bottom:40px;
     color:var(--azulOscuro);
 }
+
+
+/*submenu para estudiantes, mejora poke se mira feo todo acumulado*/
+#menuLateral{
+    overflow: visible;
+}
+.dropdown{
+    list-style:none;
+    position:relative;
+}
+.dropdown>a{
+    display:block;
+}
+.submenu{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    background:white;
+    min-width:220px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    overflow:hidden;
+    z-index:999;
+}
+.submenu li{
+    list-style:none;
+}
+.submenu li a{
+    display:block;
+    padding:14px 20px;
+    color:var(--azulOscuro);
+    text-decoration:none;
+    transition:.3s;
+}
+.submenu li a:hover{
+    background:var(--celeste);
+    color:white;
+}
+.dropdown:hover .submenu{
+    display:block;
+}
