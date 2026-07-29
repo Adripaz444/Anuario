@@ -1,59 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudiantes Matutina | Anuario IPC 2026</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
-
 <body>
-
 <header>
-
     <a href="index.html">
         <img src="logoipc.jpg" alt="IPC" class="logo">
     </a>
-
     <button class="menu-btn" onclick="abrirMenu()">
         ☰
     </button>
-
 </header>
 
 <nav id="menuLateral">
-
     <button class="cerrar" onclick="cerrarMenu()">✕</button>
-
     <a href="index.html">Inicio</a>
     <a href="Historia de la Promo.html">Historia de la Promoción</a>
     <a href="Docentes.html">Docentes</a>
-    <a href="Estudiantes.html">Estudiantes</a>
+     <li class="dropdown">
+            <a href="#">Estudiantes ▾</a>
+            <ul class="submenu">
+                <li>
+            <a href="MatutinaE.html">Matutina</a>
+        </li>
+        <li>
+            <a href="VespertinaE.html">Vespertina</a>
+        </li>
+    </ul>
+</li>
     <a href="Actividades Destacadas.html">Actividades Destacadas</a>
     <a href="Logros.html">Logros</a>
     <a href="Recuerdos.html">Recuerdos</a>
     <a href="Buscador.html">🔍 Buscar</a>
     <a href="Créditos.html">Créditos</a>
-
 </nav>
 
 <main class="contenedor">
-
-<a href="Estudiantes.html" class="volver">← Volver</a>
-
+<a href="Estudiantes.htmL" class="volver">← Volver</a>
 <h1 class="tituloPagina">Estudiantes</h1>
-
 <h2 class="subtituloPagina">Jornada Matutina</h2>
-
 <section class="selectorGrados">
-
     <div class="grado">
-
         <h3>PRIMERO</h3>
-
         <div class="botonesSeccion">
-
             <a href="#1A">A</a>
             <a href="#1B">B</a>
 
