@@ -44,17 +44,18 @@ body{
 /* decoraciones despues se cambiaran por pikupim cuando nos pasen las imagenes-stickers de pikupin */
 
 body::before{
-   content:"";
-  position:fixed;
-    width:700px;
-    height:700px;
-    background:linear-gradient(180deg,#C6E3F8,#8CC7F0);
-    border-radius:45% 55% 70% 30% / 45% 35% 65% 55%;
-    top:-300px;
-    right:-250px;
-    opacity:.35;
-    z-index:-2;
-    transform:rotate(20deg);
+  content:"";
+  position:absolute; /* <-- Cambiado a absolute */
+  width:700px;
+  height:700px;
+  background:linear-gradient(180deg,#C6E3F8,#8CC7F0);
+  border-radius:45% 55% 70% 30% / 45% 35% 65% 55%;
+  top:-300px;
+  right:-250px;
+  opacity:.35;
+  z-index:-2;
+  transform:rotate(20deg);
+  pointer-events: none; /* Para que no estorbe los clics */
 }
 
 body::after{
