@@ -41,34 +41,43 @@ body{
     position:relative;
 }
 
-/* decoraciones despues se cambiaran por pikupim cuando nos pasen las imagenes-stickers de pikupin */
-
-body::before{
-  content:"";
-  position:absolute; /* <-- Cambiado a absolute */
-  width:700px;
-  height:700px;
-  background:linear-gradient(180deg,#C6E3F8,#8CC7F0);
-  border-radius:45% 55% 70% 30% / 45% 35% 65% 55%;
-  top:-300px;
-  right:-250px;
-  opacity:.35;
-  z-index:-2;
-  transform:rotate(20deg);
-  pointer-events: none; /* Para que no estorbe los clics */
+body{
+    background: #0d2847; /* Fondo azul noche tech */
+    color: var(--texto);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Creato", sans-serif;
+    position: relative;
 }
 
+/* Mancha azul brillante superior */
+body::before{
+  content: "";
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  background: linear-gradient(135deg, #1771b8, #388BC4, #2cd3db);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  top: -200px;
+  right: -150px;
+  opacity: .85;
+  z-index: -2;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+/* Mancha azul inferior */
 body::after{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:linear-gradient(180deg,#8CC7F0,#5EA9DD);
-    border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;
-    bottom:-250px;
-    left:-180px;
-    opacity:.22;
-    z-index:-2;
+    content: "";
+    position: fixed;
+    width: 550px;
+    height: 550px;
+    background: linear-gradient(135deg, #0f4c81, #1e88e5);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    bottom: -180px;
+    left: -150px;
+    opacity: .75;
+    z-index: -2;
 }
 
 header{
@@ -149,53 +158,78 @@ header{
 
 /* diseño de la pagina inicio*/
 
-.inicio{
-    min-height:75vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    animation:aparecer 1.2s;
+.inicio {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.titulo{
-    font-family:"Aston";
-    font-size:110px;
-    color:var(--azulMedio);
-    font-weight:normal;
-}
-.anio{
-    font-family:"Stretch";
-    font-size:95px;
-    letter-spacing:8px;
-    color:var(--azulOscuro);
-    margin-top:-15px;
-}
-.titulo{
-    animation:titulo 1.3s;
-}
-.anio{
-    animation:anio 1.8s;
+/* Tarjeta Cristal centradita y estilizada */
+.tarjeta-glass {
+    background: rgba(255, 255, 255, 0.28); /* Transparencia estilo vidrio */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.65); /* Borde brillante */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    padding: 50px 40px;
+    max-width: 850px;
+    width: 90%;
+    text-align: center;
+    animation: aparecer 1.2s ease-out;
 }
 
-.boton{
-    margin-top:60px;
-    text-decoration:none;
-    color:white;
-    background:var(--azulMedio);
-    padding:18px 55px;
-    border-radius:50px;
-    transition:.35s;
-    font-size:20px;
+.titulo {
+    font-family: "Aston";
+    font-size: 110px;
+    color: #0b2545; /* Azul muy oscuro para resaltar en el cristal */
+    font-weight: normal;
+    animation: titulo 1.3s;
 }
 
-.boton:hover{
-    background:var(--azulOscuro);
-    transform:translateY(-6px);
-    box-shadow:0 10px 25px rgba(0,0,0,.18);
+.anio {
+    font-family: "Stretch";
+    font-size: 90px;
+    letter-spacing: 6px;
+    /* Degradado de texto metálico */
+    background: linear-gradient(180deg, #1d4ed8 0%, #0b2545 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    animation: anio 1.8s;
 }
 
+.subtitulo-ipc {
+    font-family: "Creato", sans-serif;
+    font-size: 36px;
+    color: #0f2b48;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.boton {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #1e6091, #0466c8);
+    padding: 18px 50px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(4, 102, 200, 0.4);
+    transition: all .35s;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.boton:hover {
+    background: linear-gradient(135deg, #0466c8, #001845);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(4, 102, 200, 0.6);
+}
 /* aniamciones de toda la pagina agregar en este lado las animaciones pa cualquier pagina */
 
 @keyframes aparecer{
@@ -460,25 +494,6 @@ html{
     background:var(--celeste);
     color:white;
 }
-/* Aplica esta clase al contenedor donde tienes el texto del centro */
-.tarjeta-glass {
-  background: rgba(255, 255, 255, 0.45); /* Color blanco semi-transparente */
-  backdrop-filter: blur(16px);            /* Este es el efecto borroso/cristal */
-  -webkit-backdrop-filter: blur(16px);    /* Compatibilidad con Safari */
-  border-radius: 28px;                     /* Bordes redondeados */
-  border: 1.5px solid rgba(255, 255, 255, 0.7); /* Borde sutil brillante */
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.08); /* Sombra suave */
-  padding: 30px;                           /* Espacio interno para que respire */
-}
-/* Reemplaza .tarjeta-glass por .inicio en tu CSS */
-.inicio {
-    min-height: 75vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    animation: aparecer 1.2s;
 
     /* Estilos del cristal */
     background: rgba(255, 255, 255, 0.45);
