@@ -109,7 +109,7 @@ header{
     background:none;
     cursor:pointer;
     font-size:38px;
-    color:var(--azulOscuro);
+    color:#ffffff;;
     transition:.3s;
 }
 
