@@ -38,7 +38,7 @@ html {
 
 /* Fondo azul noche tech */
 body {
-    background: ##F5F5DC; 
+    background: #F5F5DC; 
     color: var(--texto);
     min-height: 100vh;
     overflow-x: hidden;
