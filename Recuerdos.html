@@ -3,8 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anuario IPC 2026</title>
+    <title>Anuario IPC 2026 - Recuerdos</title>
     <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* Estilos para la galería de recuerdos */
+        .contenedor-recuerdos {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .titulo-seccion {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .subtitulo-seccion {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Grilla adaptable para que las imágenes tengan tamaño moderado */
+        .galeria-recuerdos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        /* Tarjeta individual de cada foto */
+        .tarjeta-recuerdo {
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 320px; /* Evita que crezcan demasiado */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tarjeta-recuerdo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Control de tamaño uniforme de la imagen */
+        .tarjeta-recuerdo img {
+            width: 100%;
+            height: 220px; /* Altura fija para alineación perfecta */
+            object-fit: cover; /* Ajusta la foto sin deformarla */
+            display: block;
+        }
+
+        /* Pie de foto o descripción */
+        .pie-recuerdo {
+            padding: 12px 15px;
+            font-size: 0.95rem;
+            color: #444;
+            background-color: #fafafa;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -12,24 +75,24 @@
         <button class="menu-btn" onclick="abrirMenu()">
             ☰
         </button>
-
     </header>
+
     <nav id="menuLateral">
         <button class="cerrar" onclick="cerrarMenu()">✕</button>
         <a href="index.html">Inicio</a>
         <a href="Historia de la Promo.html">Historia del Colegio</a>
         <a href="Docentes.html">Docentes</a>
-         <li class="dropdown">
+        <li class="dropdown">
             <a href="#">Estudiantes ▾</a>
             <ul class="submenu">
                 <li>
-            <a href="MatutinaE.html">Matutina</a>
+                    <a href="MatutinaE.html">Matutina</a>
+                </li>
+                <li>
+                    <a href="VespertinaE.html">Vespertina</a>
+                </li>
+            </ul>
         </li>
-        <li>
-            <a href="VespertinaE.html">Vespertina</a>
-        </li>
-    </ul>
-</li>
         <a href="Actividades Destacadas.html">Actividades</a>
         <a href="Logros.html">Logros</a>
         <a href="Recuerdos.html">Recuerdos</a>
@@ -37,14 +100,48 @@
         <a href="Créditos.html">Créditos</a>
     </nav>
 
+    <!-- SECCIÓN DE RECUERDOS -->
+    <main class="contenedor-recuerdos">
+        <h1 class="titulo-seccion">Recuerdos de la Promo</h1>
+        <p class="subtitulo-seccion">Los mejores momentos e historias que marcaron nuestro paso por el colegio.</p>
+
+        <div class="galeria-recuerdos">
+            <!-- Foto 1 -->
+            <div class="tarjeta-recuerdo">
+                <img src="recuerdo1.jpg" alt="Recuerdo de la Promo 1">
+                <div class="pie-recuerdo">Excursión de inicio de año</div>
+            </div>
+
+            <!-- Foto 2 -->
+            <div class="tarjeta-recuerdo">
+                <img src="recuerdo2.jpg" alt="Recuerdo de la Promo 2">
+                <div class="pie-recuerdo">Actividad deportiva / Aniversario</div>
+            </div>
+
+            <!-- Foto 3 -->
+            <div class="tarjeta-recuerdo">
+                <img src="recuerdo3.jpg" alt="Recuerdo de la Promo 3">
+                <div class="pie-recuerdo">Trabajos en equipo e convivencias</div>
+            </div>
+
+            <!-- Foto 4 -->
+            <div class="tarjeta-recuerdo">
+                <img src="recuerdo4.jpg" alt="Recuerdo de la Promo 4">
+                <div class="pie-recuerdo">Último día de clases</div>
+            </div>
+            
+            <!-- Agrega más bloques .tarjeta-recuerdo según el número de imágenes que tengas -->
+        </div>
+    </main>
+
     <script>
-const menu=document.getElementById("menuLateral");
-function abrirMenu(){
-    menu.style.right="0";
-}
-function cerrarMenu(){
-    menu.style.right="-320px";
-}
-</script>
+        const menu = document.getElementById("menuLateral");
+        function abrirMenu(){
+            menu.style.right = "0";
+        }
+        function cerrarMenu(){
+            menu.style.right = "-320px";
+        }
+    </script>
 </body>
 </html>
