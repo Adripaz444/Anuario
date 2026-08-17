@@ -512,6 +512,8 @@ header {
 }
 
 .parrafo{
-    color: var(--texto);
-     font-family: "Creato", sans-serif;
+        color: var(--texto);
+    font-family: "Creato";
+    src: url("CreatoDisplay.otf");
+    font-size:18px;
 }
