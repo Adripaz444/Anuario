@@ -510,3 +510,8 @@ header {
         width: 100%;
     }
 }
+
+.parrafo{
+    color: var(--texto);
+     font-family: "Creato", sans-serif;
+}
