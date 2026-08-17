@@ -363,7 +363,7 @@ header {
     font-size: 17px;
 }
 
-/* Sección Estudiantes */
+/*  Estudiantes */
 .selectorGrados {
     margin: 50px 0;
 }
@@ -416,7 +416,7 @@ header {
     color: var(--azulOscuro);
 }
 
-/* Estilos de tarjeta de cristal secundaria (bloque corregido que estaba sin selector) */
+/*  cristal  */
 .tarjeta-cristal {
     background: rgba(255, 255, 255, 0.45);
     backdrop-filter: blur(16px);
@@ -475,7 +475,7 @@ header {
     }
 }
 
-/* Estilos responsivos */
+/*  responsivo */
 @media (max-width: 1024px) {
     .gridCards {
         grid-template-columns: repeat(2, 1fr);
@@ -510,9 +510,94 @@ header {
         width: 100%;
     }
 }
+/* =================================
+   HISTORIA DE LA PROMOCIÓN
+================================= */
 
-.parrafo{
-        color: var(--texto);
-    font-size:22px;
-    font-size:georgia;
+.historia{
+    width:90%;
+    max-width:1100px;
+    margin:0 auto;
+    padding:70px 20px;
+    position:relative;
+    z-index:2;
+}
+
+
+/* TÍTULO */
+
+.tituloHistoria{
+    text-align:center;
+    color:var(--azulOscuro);
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+
+/* CUADRO DE HISTORIA */
+
+.historiaTexto{
+    background:white;
+    max-width:950px;
+    margin:0 auto;
+    padding:40px 55px;
+    border-radius:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+
+    border-top:6px solid var(--azul);
+}
+
+
+.historiaTexto p{
+    color:#333;
+    font-size:18px;
+    line-height:1.7;
+    text-align:justify;
+    margin-bottom:25px;
+}
+
+
+.historiaTexto p:last-child{
+    margin-bottom:0;
+}
+
+
+/* historia del cole y la mision y vision*/
+.misionVision{
+    max-width:950px;
+    margin:50px auto 0;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+
+.infoCard{
+    background:#F7D774;
+    padding:35px;
+    border-radius:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+    text-align:center;
+    transition:.3s;
+}
+
+
+.infoCard:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
+}
+
+
+.infoCard h2{
+    color:var(--azulOscuro);
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+
+.infoCard p{
+    color:#333;
+    font-size:17px;
+    line-height:1.6;
 }
