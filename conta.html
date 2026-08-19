@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador | Anuario IPC 2026</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header>
+        <img src="logoipc.jpg" alt="IPC" class="logo">
+        <button class="menu-btn" onclick="abrirMenu()">
+            ☰
+        </button>
+    </header>
+
+    <nav id="menuLateral">
+        <button class="cerrar" onclick="cerrarMenu()">
+            ✕
+        </button>
+        <a href="index.html">Inicio</a>
+        <a href="Historia de la Promo.html">
+            Historia del Colegio
+        </a>
+        <a href="Docentes.html">
+            Docentes
+        </a>
+        <li class="dropdown">
+            <a href="#">
+                Estudiantes ▾
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="MatutinaE.html">
+                        Matutina
+                    </a>
+                </li>
+                <li>
+                    <a href="VespertinaE.html">
+                        Vespertina
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <a href="Actividades Destacadas.html">
+            Actividades
+        </a>
+        <a href="Logros.html">
+            Logros
+        </a>
+        <a href="Recuerdos.html">
+            Recuerdos
+        </a>
+        <a href="Buscador.html">
+            🔍 Buscar
+        </a>
+        <a href="Créditos.html">
+            Créditos
+        </a>
+    </nav>
+
+    <main class="seleccionEstudiantes">
+        <a href="VespertinaE.html" class="volver">
+            ← Volver a Vespertina
+        </a>
+        <h1 class="tituloSeleccion">  Perito Contador  </h1>
+        <p class="descripcionSeleccion">
+            Selecciona la sección que deseas visitar
+        </p>
+
+        <section class="botonesGrados">
+            <a href="conta4.html" class="botonGrado">
+                <span class="numeroGrado">
+                    4
+                </span>
+                <div>
+                    <h2>4to</h2>
+                    <p>
+                        Estudiantes de 4to Perito Contador
+                    </p>
+                </div>
+                <span class="flecha">
+                    →
+                </span>
+            </a>
+
+            <a href="conta5.html" class="botonGrado">
+                <span class="numeroGrado">
+                    5
+                </span>
+                <div>
+                    <h2>5to</h2>
+                    <p>
+                        Estudiantes de Estudiantes de 5to Perito Contador
+                    </p>
+                </div>
+                <span class="flecha">
+                    →
+                </span>
+            </a>
+          
+          <a href="conta6.html" class="botonGrado">
+                <span class="numeroGrado">
+                    6
+                </span>
+                <div>
+                    <h2>6to</h2>
+                    <p>
+                        Estudiantes de Estudiantes de 6to Perito Contador
+                    </p>
+                </div>
+                <span class="flecha">
+                    →
+                </span>
+            </a>
+        </section>
+    </main>
+  
+    <script>
+        const menu = document.getElementById("menuLateral");
+        function abrirMenu() {
+            menu.style.right = "0";
+        }
+        function cerrarMenu() {
+            menu.style.right = "-320px";
+        }
+    </script>
+</body>
+</html>
