@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+
     <header>
         <img src="logoipc.jpg" alt="IPC" class="logo">
-        <button class="menu-btn" onclick="abrirMenu()">
-            ☰
-        </button>
-
+        <button class="menu-btn" onclick="abrirMenu()">☰</button>
     </header>
+
     <nav id="menuLateral">
         <button class="cerrar" onclick="cerrarMenu()">✕</button>
         <a href="index.html">Inicio</a>
@@ -21,21 +20,94 @@
         <a href="Docentes.html">Docentes</a>
         <a href="Estudiantes.html">Estudiantes</a>
         <a href="Galería.html">Galería Fotográfica</a>
-        <a href="Actividades Destacadas.html">Actividades </a>
+        <a href="Actividades Destacadas.html">Actividades</a>
         <a href="Logros.html">Logros</a>
         <a href="Recuerdos.html">Recuerdos</a>
         <a href="Buscador.html">🔍 Buscar</a>
         <a href="Créditos.html">Créditos</a>
     </nav>
 
+    </header>
+
+    <main>
+        <section class="featured">
+            
+            <div class="section-title">
+                <span>PARTICIPA Y DISFRUTA</span>
+                <h1>Actividades Destacadas</h1>
+            </div>
+
+            <div class="cards">
+
+                <div class="activity-card">
+                    <div class="photo-placeholder">
+                        <img src="pintar.jfif" alt="Pintar">
+                    </div>
+                    <p class="activity-name">Pintar</p>
+                </div>
+
+                <div class="activity-card">
+                    <div class="photo-placeholder">
+                        <img src="poesia.jpeg" alt="Poesia">
+                    </div>
+                    <p class="activity-name">Poesia</p>
+                </div>
+
+                <div class="activity-card">
+                    <div class="photo-placeholder">
+                        <img src="canto.jpeg" alt="Canto">
+                    </div>
+                    <p class="activity-name">Canto</p>
+                </div>
+
+                <div class="activity-card">
+                    <div class="photo-placeholder">
+                        <img src="baile.jpeg" alt="Baile">
+                    </div>
+                    <p class="activity-name">Baile</p>
+                </div>
+
+                <div class="activity-card">
+                    <div class="photo-placeholder">
+                        <img src="acto civico.jpeg" alt="Acto Cívico">
+                    </div>
+                    <p class="activity-name">Actos Cívicos</p>
+                </div>
+
+                <div class="activity-card">
+                    <div class="photo-placeholder">
+                        <img src="basquet.jpeg" alt="Básquet">
+                    </div>
+                    <p class="activity-name">Básquet</p>
+                </div>
+
+                <div class="activity-card">
+                    <div class="photo-placeholder">
+                        <img src="carrera.jpeg" alt="Carrera">
+                    </div>
+                    <p class="activity-name">Carrera</p>
+                </div>
+
+                <div class="activity-card">
+                    <div class="photo-placeholder">
+                        <img src="ajedrez.jpeg" alt="Ajedrez">
+                    </div>
+                    <p class="activity-name">Ajedrez</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+
     <script>
-const menu=document.getElementById("menuLateral");
-function abrirMenu(){
-    menu.style.right="0";
-}
-function cerrarMenu(){
-    menu.style.right="-320px";
-}
-</script>
+        const menu = document.getElementById("menuLateral");
+        function abrirMenu(){
+            menu.style.right = "0";
+        }
+        function cerrarMenu(){
+            menu.style.right = "-320px";
+        }
+    </script>
 </body>
 </html>

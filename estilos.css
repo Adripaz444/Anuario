@@ -777,3 +777,113 @@ header {
         font-size: 24px;
     }
 }
+
+/* =================================
+   ACTIVIDADES DESTACADAS
+================================= */
+
+/* Sección Principal */
+.featured {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Título de la Sección */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title span {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: var(--azulMedio);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.section-title h1 {
+    font-size: 42px;
+    color: var(--azulOscuro);
+    margin: 0;
+}
+
+/* Grilla responsive para las 8 tarjetas (4 columnas en pantallas grandes, 2 en medianas y 1 en móviles) */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+/* Tarjeta / Cuadro Individual */
+.activity-card {
+    background-color: var(--blanco);
+    border: 2px solid rgba(198, 227, 248, 0.5); /* Borde sutil usando var(--celeste) */
+    border-radius: 20px;                         /* Esquinas redondeadas estilo tu anuario */
+    box-shadow: 0 8px 22px rgba(31, 78, 121, 0.12); /* Sombra suave */
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Efecto Hover al pasar el cursor */
+.activity-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(31, 78, 121, 0.22);
+    border-color: var(--azul);
+}
+
+/* Contenedor / Marco de la Foto */
+.photo-placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: var(--gris);
+    overflow: hidden;
+}
+
+.photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen automáticamente sin deformarla */
+    transition: transform 0.4s ease;
+}
+
+.activity-card:hover .photo-placeholder img {
+    transform: scale(1.08); /* Zoom sutil al hover */
+}
+
+/* Nombre de la Actividad */
+.activity-name {
+    width: 100%;
+    padding: 18px 10px;
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--azulOscuro);
+    background-color: var(--blanco);
+}
+
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title h1 {
+        font-size: 32px;
+    }
+}
