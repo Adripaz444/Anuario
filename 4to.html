@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4to Diversificado | Anuario IPC 2026</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header>
+        <img src="logoipc.jpg" alt="IPC" class="logo">
+        <button class="menu-btn" onclick="abrirMenu()">
+            ☰
+        </button>
+    </header>
+
+    <nav id="menuLateral">
+        <button class="cerrar" onclick="cerrarMenu()">
+            ✕
+        </button>
+        <a href="index.html">Inicio</a>
+        <a href="Historia de la Promo.html">
+            Historia del Colegio
+        </a>
+        <a href="Docentes.html">
+            Docentes
+        </a>
+        <li class="dropdown">
+            <a href="#">
+                Estudiantes ▾
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="MatutinaE.html">
+                        Matutina
+                    </a>
+                </li>
+                <li>
+                    <a href="VespertinaE.html">
+                        Vespertina
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <a href="Actividades Destacadas.html">
+            Actividades
+        </a>
+        <a href="Logros.html">
+            Logros
+        </a>
+        <a href="Recuerdos.html">
+            Recuerdos
+        </a>
+        <a href="Buscador.html">
+            🔍 Buscar
+        </a>
+        <a href="Créditos.html">
+            Créditos
+        </a>
+    </nav>
+
+    <main class="seleccionEstudiantes">
+        <a href="MatutinaE.html" class="volver">
+            ← Volver a Matutina
+        </a>
+        <h1 class="tituloSeleccion">  4to Diversificado  </h1>
+        <p class="descripcionSeleccion">
+            Selecciona la sección que deseas visitar
+        </p>
+
+        <section class="botonesGrados">
+            <a href="4toA.html" class="botonGrado">
+                <span class="numeroGrado">
+                    A
+                </span>
+                <div>
+                    <h2>Sección A</h2>
+                    <p>
+                        Estudiantes de 4to Bachillerato Computacion
+                    </p>
+                </div>
+                <span class="flecha">
+                    →
+                </span>
+            </a>
+
+            <a href="4toB.html" class="botonGrado">
+                <span class="numeroGrado">
+                    B
+                </span>
+                <div>
+                    <h2>Sección B</h2>
+                    <p>
+                        Estudiantes de Estudiantes de 4to Bachillerato Computacion
+                    </p>
+                </div>
+                <span class="flecha">
+                    →
+                </span>
+            </a>
+          
+          <a href="4toD.html" class="botonGrado">
+                <span class="numeroGrado">
+                    B
+                </span>
+                <div>
+                    <h2>Sección D</h2>
+                    <p>
+                        Estudiantes de Estudiantes de 4to Bachillerato en Diseño
+                    </p>
+                </div>
+                <span class="flecha">
+                    →
+                </span>
+            </a>
+        </section>
+    </main>
+  
+    <script>
+        const menu = document.getElementById("menuLateral");
+        function abrirMenu() {
+            menu.style.right = "0";
+        }
+        function cerrarMenu() {
+            menu.style.right = "-320px";
+        }
+    </script>
+</body>
+</html>

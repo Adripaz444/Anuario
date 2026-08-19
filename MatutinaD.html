@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuario IPC 2026</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <img src="logoipc.jpg" alt="IPC" class="logo">
+        <button class="menu-btn" onclick="abrirMenu()">
+            ☰
+        </button>
+
+    </header>
+    <nav id="menuLateral">
+        <button class="cerrar" onclick="cerrarMenu()">✕</button>
+        <a href="index.html">Inicio</a>
+        <a href="Historia de la Promo.html">Historia del Colegio</a>
+        <a href="Docentes.html">Docentes</a>
+         <li class="dropdown">
+            <a href="#">Estudiantes ▾</a>
+            <ul class="submenu">
+                <li>
+            <a href="MatutinaE.html">Matutina</a>
+        </li>
+        <li>
+            <a href="VespertinaE.html">Vespertina</a>
+        </li>
+    </ul>
+</li>
+        <a href="Actividades Destacadas.html">Actividades </a>
+        <a href="Logros.html">Logros</a>
+        <a href="Recuerdos.html">Recuerdos</a>
+        <a href="Buscador.html">🔍 Buscar</a>
+        <a href="Créditos.html">Créditos</a>
+    </nav>
+    
+<main class="contenedor">
+    <a href="Docentes.html" class="volver">← Volver</a>
+    <h1 class="tituloPagina">Docentes</h1>
+    <h2 class="subtituloPagina">Jornada Matutina</h2>
+   <section class="gridCards">
+
+    <div class="card">
+        <img src="2.jpg" alt="Profesor1">
+        <div class="cardInfo">
+            <h3>Lourdes Cuc</h3>
+            <p>Matemáticas</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="5.jpg" alt="Profesor2">
+        <div class="cardInfo">
+            <h3>Maynor Donado</h3>
+            <p>Ciencias Sociales</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="ronaldo.jpg" alt="Profesor3">
+        <div class="cardInfo">
+            <h3>Ronaldo Bertillo</h3>
+            <p>Artes Plásticas</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="valesca.jpg" alt="Profesor4">
+        <div class="cardInfo">
+            <h3>Valesca Hernandez</h3>
+            <p>Idioma Español</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="16.jpg" alt="Profesor5">
+        <div class="cardInfo">
+            <h3>Patty Aguin</h3>
+            <p>Especialidad</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="7.jpg" alt="Profesor6">
+        <div class="cardInfo">
+            <h3>Angel Lopez</h3>
+            <p>Computacion</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="22.jpg" alt="Profesor7">
+        <div class="cardInfo">
+            <h3>Magnolia Tobar</h3>
+            <p>Ingles</p>
+        </div>
+    </div>
+        <div class="card">
+        <img src="6.jpg" alt="Profesor8">
+        <div class="cardInfo">
+            <h3>Carlos Cheguen</h3>
+            <p>Area</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="17.jpg" alt="Profesor9">
+        <div class="cardInfo">
+            <h3>Diana Rosales</h3>
+            <p>Educación Física</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="4.jpg" alt="Profesor10">
+        <div class="cardInfo">
+            <h3>Elmer Aceituno</h3>
+            <p>Director</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="18.jpg" alt="Profesor11">
+        <div class="cardInfo">
+            <h3>Noe Reyes</h3>
+            <p>Emprendimiento</p>
+        </div>
+    </div>
+
+</section>
+</main>
+
+    <script>
+const menu=document.getElementById("menuLateral");
+function abrirMenu(){
+    menu.style.right="0";
+}
+function cerrarMenu(){
+    menu.style.right="-320px";
+}
+</script>
+</body>
+</html>

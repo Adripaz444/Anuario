@@ -1,0 +1,779 @@
+/* Tipografías dada por diseño */
+@font-face {
+    font-family: "Creato";
+    src: url("CreatoDisplay.otf");
+}
+@font-face {
+    font-family: "Aston";
+    src: url("AstonScript.ttf");
+}
+@font-face {
+    font-family: "Stretch";
+    src: url("StretchPro.otf");
+}
+
+/* colores especifos */
+:root {
+    --blanco: #ffffff;
+    --gris: #EEF3F7;
+    --celeste: #C6E3F8;
+    --azulClaro: #8CC7F0;
+    --azul: #5EA9DD;
+    --azulMedio: #388BC4;
+    --azulOscuro: #445CC5;
+    --amarillo: #F7D66F;
+    --texto: #17364D;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Fondo  */
+body {
+    background: #ffffff; 
+    color: var(--texto);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Creato", sans-serif;
+    position: relative;
+}
+
+/* Mancha azul brillante superior */
+body::before {
+    content: "";
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    background: linear-gradient(135deg, #1771b8, #388BC4, #2cd3db);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    top: -200px;
+    right: -150px;
+    opacity: .85;
+    z-index: -2;
+    transform: rotate(15deg);
+    pointer-events: none;
+}
+
+/* Mancha azul inferior */
+body::after {
+    content: "";
+    position: fixed;
+    width: 550px;
+    height: 550px;
+    background: linear-gradient(135deg, #0f4c81, #1e88e5);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    bottom: -180px;
+    left: -150px;
+    opacity: .75;
+    z-index: -2;
+    pointer-events: none;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 60px;
+}
+
+.logo {
+    width: 80px;
+    animation: logo 1s ease;
+}
+
+.menu-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 38px;
+    color: #ffffff;
+    transition: .3s;
+}
+
+.menu-btn:hover {
+    transform: scale(1.15);
+}
+
+/* Menú lateral */
+#menuLateral {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    height: 100%;
+    background: white;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, .15);
+    transition: .4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding-top: 90px;
+    z-index: 999;
+    overflow-y: auto; 
+}
+
+#menuLateral.active {
+    right: 0;
+}
+
+#menuLateral a {
+    text-decoration: none;
+    color: var(--texto);
+    padding: 18px 40px;
+    transition: .3s;
+    font-size: 18px;
+    display: block;
+}
+
+#menuLateral a:hover {
+    background: var(--celeste);
+    padding-left: 55px;
+}
+
+.cerrar {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    border: none;
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.dropdown {
+    list-style: none;
+    position: relative;
+    width: 100%;
+}
+
+.submenu {
+    display: none;
+    position: static; 
+    background: #f4f8fb;
+    width: 100%;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    padding: 0;
+    list-style: none;
+}
+
+.dropdown:hover .submenu,
+.dropdown.active .submenu {
+    display: block;
+}
+
+.submenu li a {
+    display: block;
+    padding: 12px 20px 12px 55px !important;
+    color: var(--azulOscuro);
+    font-size: 16px !important;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.submenu li a:hover {
+    background: var(--celeste) !important;
+    padding-left: 65px !important;
+}
+
+/* Página Inicio */
+.inicio {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.tarjeta-glass {
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    padding: 50px 40px;
+    max-width: 850px;
+    width: 90%;
+    text-align: center;
+    animation: aparecer 1.2s ease-out;
+}
+
+.titulo {
+    font-family: "Aston";
+    font-size: 110px;
+    color: #0b2545;
+    font-weight: normal;
+    animation: titulo 1.3s;
+}
+
+.anio {
+    font-family: "Stretch";
+    font-size: 90px;
+    letter-spacing: 6px;
+    background: linear-gradient(180deg, #1d4ed8 0%, #0b2545 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    animation: anio 1.8s;
+}
+
+.subtitulo-ipc {
+    font-family: "Creato", sans-serif;
+    font-size: 36px;
+    color: #0f2b48;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.boton {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #1e6091, #0466c8);
+    padding: 18px 50px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(4, 102, 200, 0.4);
+    transition: all .35s;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.boton:hover {
+    background: linear-gradient(135deg, #0466c8, #001845);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(4, 102, 200, 0.6);
+}
+
+/* Sección Docentes / Páginas Secundarias */
+.pagina {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 0 80px;
+}
+
+.tituloPagina {
+    text-align: center;
+    font-size: 50px;
+    color: var(--azulOscuro);
+    margin-bottom: 10px;
+}
+
+.subtituloPagina {
+    text-align: center;
+    color: #666;
+    margin-bottom: 60px;
+}
+
+.contenedorOpciones {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.opcion {
+    width: 350px;
+    height: 220px;
+    background: white;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--azulOscuro);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
+    transition: .3s;
+}
+
+.opcion:hover {
+    transform: translateY(-8px);
+    background: var(--celeste);
+}
+
+.opcion h2 {
+    font-size: 35px;
+    letter-spacing: 2px;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+    padding-bottom: 70px;
+}
+
+.volver {
+    display: inline-block;
+    margin: 20px 0;
+    text-decoration: none;
+    color: var(--azulOscuro);
+    font-weight: bold;
+}
+
+.gridCards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .12);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.cardInfo {
+    padding: 20px;
+    text-align: center;
+}
+
+.cardInfo h3 {
+    color: var(--azulOscuro);
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.cardInfo p {
+    color: #666;
+    font-size: 17px;
+}
+
+/*  Estudiantes */
+.selectorGrados {
+    margin: 50px 0;
+}
+
+.grado {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.grado h3 {
+    color: var(--azulOscuro);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.botonesSeccion {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.botonesSeccion a {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--azulOscuro);
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .12);
+    transition: .3s;
+    font-weight: bold;
+}
+
+.botonesSeccion a:hover {
+    background: var(--celeste);
+    transform: translateY(-5px);
+}
+
+.gradoSeccion {
+    margin-top: 80px;
+}
+
+.gradoSeccion h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--azulOscuro);
+}
+
+/*  cristal  */
+.tarjeta-cristal {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 28px;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.08);
+    padding: 40px;
+    margin: 20px auto;
+    max-width: 850px;
+    width: 90%;
+}
+
+/* Animaciones */
+@keyframes logo {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes titulo {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes anio {
+    from {
+        opacity: 0;
+        transform: translateY(55px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*  responsivo */
+@media (max-width: 1024px) {
+    .gridCards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 20px;
+    }
+    .logo {
+        width: 65px;
+    }
+    .titulo {
+        font-size: 70px;
+    }
+    .anio {
+        font-size: 60px;
+        letter-spacing: 4px;
+    }
+    .boton {
+        font-size: 18px;
+        padding: 16px 35px;
+    }
+    #menuLateral {
+        width: 280px;
+    }
+    .gridCards {
+        grid-template-columns: 1fr;
+    }
+    .opcion {
+        width: 100%;
+    }
+}
+/* =================================
+   HISTORIA DE LA PROMOCIÓN
+================================= */
+
+.historia{
+    width:90%;
+    max-width:1100px;
+    margin:0 auto;
+    padding:70px 20px;
+    position:relative;
+    z-index:2;
+}
+
+
+/* TÍTULO */
+
+.tituloHistoria{
+    text-align:center;
+    color:var(--azulOscuro);
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+
+/* CUADRO DE HISTORIA */
+
+.historiaTexto{
+    background:white;
+    max-width:950px;
+    margin:0 auto;
+    padding:40px 55px;
+    border-radius:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+
+    border-top:6px solid var(--azul);
+}
+
+
+.historiaTexto p{
+    color:#333;
+    font-size:18px;
+    line-height:1.7;
+    text-align:justify;
+    margin-bottom:25px;
+}
+
+
+.historiaTexto p:last-child{
+    margin-bottom:0;
+}
+
+
+/* historia del cole y la mision y vision*/
+.misionVision{
+    max-width:950px;
+    margin:50px auto 0;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+
+.infoCard{
+    background:#F7D774;
+    padding:35px;
+    border-radius:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+    text-align:center;
+    transition:.3s;
+}
+
+
+.infoCard:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
+}
+
+
+.infoCard h2{
+    color:var(--azulOscuro);
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+
+.infoCard p{
+    color:#333;
+    font-size:17px;
+    line-height:1.6;
+}
+
+/*SELECCIÓN DE ESTUDIANTES */
+.seleccionEstudiantes {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 55px 20px 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.tituloSeleccion {
+    text-align: center;
+    color: var(--azulOscuro);
+
+    font-size: 42px;
+
+    margin-top: 20px;
+
+    margin-bottom: 10px;
+
+}
+
+.descripcionSeleccion {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 45px;
+}
+
+/*  BOTONES */
+.botonesGrados {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+/* elegir grado boton*/
+.botonGrado {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    min-height: 145px;
+    padding: 25px 28px;
+    text-decoration: none;
+    color: var(--azulOscuro);
+    background: white;
+    border-radius: 25px;
+    border: 2px solid rgba(79, 163, 207, 0.20);
+    box-shadow: 0 8px 22px rgba(31, 78, 121, 0.12);
+    overflow: hidden;
+    transition: all .3s ease;
+}
+
+/* DECORACIÓN DEL BOTÓN */
+.botonGrado::before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: var(--celeste);
+    border-radius: 50%;
+    right: -55px;
+    top: -55px;
+    opacity: .25;
+    transition: .3s;
+}
+
+/* SEGUNDO DETALLE */
+.botonGrado::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: var(--amarillo);
+    border-radius: 50%;
+    right: 15px;
+    bottom: -45px;
+    opacity: .35;
+}
+
+/* CÍRCULO DEL NÚMERO */
+.numeroGrado {
+    min-width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        var(--celeste),
+        var(--azul)
+    );
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    box-shadow: 0 6px 15px rgba(61, 139, 190, .30);
+    z-index: 2;
+}
+
+/* TEXTO DEL BOTÓN */
+.botonGrado h2 {
+    margin: 0 0 8px;
+    color: var(--azulOscuro);
+    font-size: 23px;
+}
+
+.botonGrado p {
+    margin: 0;
+    color: #777;
+    font-size: 15px;
+}
+
+/* FLECHA */
+.flecha {
+    margin-left: auto;
+    font-size: 30px;
+    color: var(--azul);
+    z-index: 2;
+    transition: .3s;
+}
+
+/* EFECTO HOVER */
+.botonGrado:hover {
+    transform: translateY(-8px);
+    border-color: var(--celeste);
+    box-shadow: 0 15px 30px rgba(31, 78, 121, .18);
+}
+
+.botonGrado:hover::before {
+    transform: scale(1.5);
+    opacity: .35;
+}
+
+.botonGrado:hover .flecha {
+    transform: translateX(8px);
+    color: var(--azulOscuro);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .botonesGrados {
+        grid-template-columns: 1fr;
+    }
+    .tituloSeleccion {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 450px) {
+    .botonGrado {
+        min-height: 120px;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .numeroGrado {
+        min-width: 60px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    .botonGrado h2 {
+        font-size: 19px;
+    }
+
+    .flecha {
+        font-size: 24px;
+    }
+}
