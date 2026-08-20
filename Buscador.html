@@ -593,39 +593,32 @@ const estudiantes = [
 {nombre: "Pascual Pedro Lilian Melisa", grado: "6S"}
 ];
 
-function limpiar(texto){
-    return texto
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
-}
-
 function buscar(){
-    const texto = limpiar(document.getElementById("busqueda").value);
 
-    const resultados = estudiantes.filter(e =>
-        limpiar(e.nombre).includes(texto)
-    );
+    const texto = document
+        .getElementById("busqueda")
+        .value
+        .trim()
+        .toLowerCase();
 
     const div = document.getElementById("resultado");
+
+    const resultados = estudiantes.filter(estudiante =>
+        estudiante.nombre.toLowerCase().includes(texto)
+    );
 
     if(resultados.length === 0){
         div.innerHTML = "<p>No se encontró ningún estudiante.</p>";
         return;
     }
 
-    div.innerHTML = resultados.map(e =>
-        `<h3>${e.nombre}</h3>
-         <p>Grado: ${e.grado}</p>
-         <hr>`
-    ).join("");
+    div.innerHTML = resultados.map(estudiante => `
+        <div class="card">
+            <h2>${estudiante.nombre}</h2>
+            <p>Grado: ${estudiante.grado}</p>
+        </div>
+    `).join("");
 }
-
-document.getElementById("busqueda").addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-        buscar();
-    }
-});
 
 function abrirMenu(){
     document.getElementById("menuLateral").style.right = "0";
