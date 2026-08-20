@@ -611,26 +611,21 @@ function buscar() {
         return;
     }
 
-    const resultados = estudiantes.filter(e =>
-        normalizar(e.nombre).includes(texto)
-    );
-
-    if (resultados.length === 0) {
-        div.innerHTML = `
-            <div class="card">
-                <h3>No se encontró ningún estudiante</h3>
-            </div>
-        `;
-        return;
-    }
-
     div.innerHTML = resultados.map(e => `
-        <div class="card">
-            <h2>${e.nombre}</h2>
-            <p><strong>Grado:</strong> ${e.grado}</p>
-        </div>
-    `).join("");
-}
+    <div class="card">
+
+        <img src="${e.foto}" 
+             alt="${e.nombre}"
+             onerror="this.src='sin-foto.png'">
+
+        <h2>${e.nombre}</h2>
+
+        <p>
+            <strong>Grado:</strong> ${e.grado}
+        </p>
+
+    </div>
+`).join("");
 
 document.getElementById("busqueda").addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
