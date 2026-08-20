@@ -143,62 +143,201 @@ button{
     margin-top:10px;
     color:#555;
 }
+    .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
+    padding: 15px 40px;
+
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* LOGO */
+
+.logo img {
+    width: 130px;
+    height: auto;
+    display: block;
+}
+/* HEADER */
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 50px;
+
+    box-sizing: border-box;
+}
+
+/* LOGO */
+.logo {
+    width: 180px;
+    height: auto;
+}
+
+/* BOTON ☰ */
+.menu-btn {
+    width: 60px;
+    height: 50px;
+
+    border: none;
+    border-radius: 25px;
+
+    background: #5b82b8;
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    transform: scale(1.05);
+}
+
+
+/* ========================= */
+/* MENU LATERAL DERECHO */
+/* ========================= */
+
+#menuLateral {
+    position: fixed;
+
+    top: 0;
+    right: -320px;
+
+    width: 280px;
+    height: 100vh;
+
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 80px 25px 25px;
+
+    box-sizing: border-box;
+
+    box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+
+    transition: right 0.4s ease;
+
+    z-index: 9999;
+}
+
+
+/* CUANDO EL MENU ESTA ABIERTO */
+
+#menuLateral.activo {
+    right: 0;
+}
+
+
+/* ENLACES */
+
+#menuLateral a {
+    text-decoration: none;
+
+    color: #333;
+
+    font-size: 17px;
+
+    padding: 15px;
+
+    border-bottom: 1px solid #ddd;
+
+    transition: 0.3s;
+}
+
+
+#menuLateral a:hover {
+    background: #e8eef7;
+
+    color: #315f9c;
+}
+
+
+/* BOTON CERRAR */
+
+.cerrar {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #5b82b8;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
- <header>
-         <header>
-        <img src="logoipc.jpg" alt="IPC" class="logo">
-        <button class="menu-btn" onclick="abrirMenu()">
-            ☰
-        </button>
-    </header>
-    <nav id="menuLateral">
-        <button class="cerrar" onclick="cerrarMenu()">
-            ✕
-        </button>
-        <a href="index.html">Inicio</a>
-        <a href="Historia de la Promo.html">
-            Historia del Colegio
-        </a>
-        <a href="Docentes.html">
-            Docentes
-        </a>
-        <li class="dropdown">
-            <a href="#">
-                Estudiantes ▾
-            </a>
-            <ul class="submenu">
-                <li>
-                    <a href="MatutinaE.html">
-                        Matutina
-                    </a>
-                </li>
-                <li>
-                    <a href="VespertinaE.html">
-                        Vespertina
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <a href="Actividades Destacadas.html">
-            Actividades
-        </a>
-        <a href="Logros.html">
-            Logros
-        </a>
-        <a href="Recuerdos.html">
-            Recuerdos
-        </a>
-        <a href="Buscador.html">
-            🔍 Buscar
-        </a>
-        <a href="Créditos.html">
-            Créditos
-        </a>
-    </nav>
+<header>
+    <img src="logoipc.jpg" alt="IPC" class="logo">
+
+    <button class="menu-btn" onclick="abrirMenu()">☰</button>
 </header>
+
+
+<!-- MENU LATERAL -->
+<nav id="menuLateral">
+
+    <button class="cerrar" onclick="cerrarMenu()">✕</button>
+
+    <a href="index.html">Inicio</a>
+
+    <a href="Historia de la Promo.html">
+        Historia del Colegio
+    </a>
+
+    <a href="Docentes.html">
+        Docentes
+    </a>
+
+    <a href="Estudiantes.html">
+        Estudiantes
+    </a>
+
+
+    <a href="Actividades Destacadas.html">
+        Actividades
+    </a>
+
+    <a href="Logros.html">
+        Logros
+    </a>
+
+    <a href="Recuerdos.html">
+        Recuerdos
+    </a>
+
+    <a href="Buscador.html">
+        🔍 Buscar
+    </a>
+
+    <a href="Créditos.html">
+        Créditos
+    </a>
+
+</nav>
 <h1>Buscador de Estudiantes</h1>
 
 <input type="text" id="busqueda" placeholder="Escribe un nombre">
@@ -571,6 +710,29 @@ function buscar(){
     div.innerHTML = resultados.map(e =>
         `<h3>${e.nombre}</h3><p>Grado: ${e.grado}</p><hr>`
     ).join("");
+}
+
+    const menuToggle = document.getElementById("menuToggle");
+const navbar = document.getElementById("navbar");
+
+menuToggle.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+});
+
+
+const dropdownBtn = document.querySelector(".dropdown-btn");
+const dropdown = document.querySelector(".dropdown");
+
+dropdownBtn.addEventListener("click", () => {
+    dropdown.classList.toggle("active");
+});
+
+    function abrirMenu() {
+    document.getElementById("menuLateral").classList.add("activo");
+}
+
+function cerrarMenu() {
+    document.getElementById("menuLateral").classList.remove("activo");
 }
 </script>
 
