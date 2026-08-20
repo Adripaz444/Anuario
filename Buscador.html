@@ -268,36 +268,26 @@ button{
 </style>
 </head>
 <body>
- <header class="header">
-    <div class="logo">
-        <img src="img/logo.png" alt="Logo">
-    </div>
+<header>
+        <img src="logoipc.jpg" alt="IPC" class="logo">
+        <button class="menu-btn" onclick="abrirMenu()">☰</button>
+    </header>
 
-    <button class="menu-toggle" id="menuToggle">
-        ☰
-    </button>
-
-    <nav class="navbar" id="navbar">
+    <nav id="menuLateral">
+        <button class="cerrar" onclick="cerrarMenu()">✕</button>
         <a href="index.html">Inicio</a>
-        <a href="historia.html">Historia del Colegio</a>
-        <a href="docentes.html">Docentes</a>
-
-        <div class="dropdown">
-            <button class="dropdown-btn">Estudiantes ▼</button>
-
-            <div class="dropdown-content">
-                <a href="matutina.html">Matutina</a>
-                <a href="vespertina.html">Vespertina</a>
-            </div>
-        </div>
-
-        <a href="actividades.html">Actividades</a>
-        <a href="logos.html">Logos</a>
-        <a href="recuerdos.html">Recuerdos</a>
-        <a href="buscar.html">🔍 Buscar</a>
-        <a href="creditos.html">Créditos</a>
+        <a href="Historia de la Promo.html">Historia del Colegio</a>
+        <a href="Docentes.html">Docentes</a>
+        <a href="Estudiantes.html">Estudiantes</a>
+        <a href="Galería.html">Galería Fotográfica</a>
+        <a href="Actividades Destacadas.html">Actividades</a>
+        <a href="Logros.html">Logros</a>
+        <a href="Recuerdos.html">Recuerdos</a>
+        <a href="Buscador.html">🔍 Buscar</a>
+        <a href="Créditos.html">Créditos</a>
     </nav>
-</header>
+
+    </header>
 <h1>Buscador de Estudiantes</h1>
 
 <input type="text" id="busqueda" placeholder="Escribe un nombre">
