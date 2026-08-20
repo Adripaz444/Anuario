@@ -247,6 +247,45 @@ button{
     width:120px;
     height:auto;
 }
+
+    #menuLateral{
+    position:fixed;
+    top:0;
+    right:-300px; /* ahora empieza oculto a la derecha */
+    left:auto;
+    width:280px;
+    height:100%;
+    background:white;
+    box-shadow:0 0 20px rgba(0,0,0,.2);
+    transition:.3s;
+    z-index:9999;
+    overflow-y:auto;
+    padding-top:20px;
+}
+
+.dropdown{
+    position:relative;
+}
+
+.submenu{
+    display:none;
+    position:absolute;
+    top:0;
+    right:100%; /* sale hacia la izquierda */
+    width:180px;
+    background:white;
+    box-shadow:0 0 15px rgba(0,0,0,.15);
+    border-radius:10px;
+}
+
+.dropdown:hover .submenu{
+    display:block;
+}
+
+.submenu a{
+    display:block;
+    padding:12px;
+}
 </style>
 </head>
 <body>
@@ -262,12 +301,19 @@ button{
         <a href="index.html">Inicio</a>
         <a href="Historia de la Promo.html">Historia del Colegio</a>
         <a href="Docentes.html">Docentes</a>
-          <li class="dropdown">
-            <a href="#">Estudiantes ▾</a>
-            <ul class="submenu">
-                <li>
-            <a href="MatutinaE.html">Matutina</a>
+         <li class="dropdown">
+    <a href="#">Estudiantes ▾</a>
+
+    <ul class="submenu">
+        <li>
+            <a href="MatutinaE.html">🌞 Matutina</a>
         </li>
+
+        <li>
+            <a href="VespertinaE.html">🌙 Vespertina</a>
+        </li>
+    </ul>
+</li>
         <li>
             <a href="VespertinaE.html">Vespertina</a>
         </li>
