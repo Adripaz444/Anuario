@@ -442,29 +442,23 @@ function obtenerCarpeta(grado){
 
 function buscar(){
 
-    const texto =
-    document.getElementById("busqueda")
-    .value
-    .toLowerCase();
-
-    const resultados =
-    estudiantes.filter(e =>
+ function buscar(){
+    const texto = document.getElementById("busqueda").value.toLowerCase();
+    const resultados = estudiantes.filter(e =>
         e.nombre.toLowerCase().includes(texto)
     );
 
-    const div =
-    document.getElementById("resultado");
+    const div = document.getElementById("resultado");
 
-    if(resultados.length===0){
-
-        div.innerHTML=`
-        <div class="card">
-            <h2>No encontrado</h2>
-        </div>
-        `;
-
+    if(resultados.length === 0){
+        div.innerHTML = "<p>No se encontró ningún estudiante.</p>";
         return;
     }
+
+    div.innerHTML = resultados.map(e =>
+        `<h3>${e.nombre}</h3><p>Grado: ${e.grado}</p><hr>`
+    ).join("");
+}
 
     div.innerHTML = resultados.map(e => {
 
