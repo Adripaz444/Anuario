@@ -169,7 +169,84 @@ button{
 #menuLateral li{
     list-style: none;
 }
+    header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+}
 
+.logo{
+    width:120px;
+}
+
+.menu-btn{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    font-size:22px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#menuLateral{
+    position:fixed;
+    top:0;
+    left:-300px;
+    width:280px;
+    height:100%;
+    background:white;
+    box-shadow:0 0 20px rgba(0,0,0,.2);
+    padding-top:20px;
+    transition:.3s;
+    z-index:9999;
+    overflow-y:auto;
+}
+
+#menuLateral a{
+    display:block;
+    padding:15px 25px;
+    color:#333;
+    text-decoration:none;
+    font-weight:500;
+}
+
+#menuLateral a:hover{
+    background:#f2f2f2;
+}
+
+#menuLateral ul{
+    list-style:none;
+}
+
+#menuLateral li{
+    list-style:none;
+}
+
+.cerrar{
+    margin:10px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+}
+
+.dropdown .submenu{
+    display:none;
+}
+
+.dropdown:hover .submenu{
+    display:block;
+}
+
+.dropdown .submenu a{
+    padding-left:45px;
+    background:#f8f8f8;
+}
+.logo{
+    width:120px;
+    height:auto;
+}
 </style>
 </head>
 <body>
@@ -202,13 +279,18 @@ button{
         <a href="Buscador.html">🔍 Buscar</a>
         <a href="Créditos.html">Créditos</a>
     </nav>
-<h1>Buscador de Estudiantes</h1>
+<div class="container">
 
-<input type="text" id="busqueda" placeholder="Escribe un nombre">
-<button onclick="buscar()">Buscar</button>
+    <h1>Buscador de Estudiantes</h1>
 
-<div id="resultado"></div>
+    <div class="buscador">
+        <input type="text" id="busqueda" placeholder="Escribe un nombre">
+        <button onclick="buscar()">Buscar</button>
+    </div>
 
+    <div id="resultado"></div>
+
+</div>
 <script>
 const estudiantes = [
 {nombre: "Ajanel Chó Dulce MariaJoseó", grado: "1roA"},
