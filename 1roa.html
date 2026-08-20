@@ -1,746 +1,749 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1ro A | Anuario IPC 2026</title>
-    <link rel="stylesheet" href="estilos.css">
+<meta charset="UTF-8">
+<title>Buscador de Estudiantes</title>
+<style>
+body{font-family:Arial,sans-serif;text-align:center;padding:40px;}
+input{padding:10px;width:300px;}
+button{padding:10px 15px;}
+#resultado{margin-top:20px;}
+
+:root{
+    --azul-principal:#4B5FD0;
+    --azul-claro:#5E90C8;
+    --celeste:#5CC3E0;
+    --fondo:#F2F2F2;
+    --blanco:#FFFFFF;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:var(--fondo);
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* FIGURAS DECORATIVAS */
+
+body::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--azul-claro),var(--celeste));
+    top:-200px;
+    right:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:var(--azul-claro);
+    bottom:-200px;
+    left:-150px;
+    z-index:-1;
+}
+
+/* CONTENEDOR */
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    padding-top:120px;
+    text-align:center;
+}
+
+h1{
+    color:var(--azul-principal);
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    color:#666;
+    margin-bottom:40px;
+}
+
+/* BUSCADOR */
+
+.buscador{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+}
+
+input{
+    width:400px;
+    max-width:90%;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    outline:none;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+button{
+    padding:15px 25px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(
+        135deg,
+        var(--azul-principal),
+        var(--celeste)
+    );
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* TARJETA */
+
+.resultado{
+    max-width:600px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    margin-top:20px;
+}
+
+.card img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:15px;
+}
+
+.card h2{
+    color:var(--azul-principal);
+}
+
+.card p{
+    margin-top:10px;
+    color:#555;
+}
+    .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 40px;
+
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* LOGO */
+
+.logo img {
+    width: 130px;
+    height: auto;
+    display: block;
+}
+/* HEADER */
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 50px;
+
+    box-sizing: border-box;
+}
+
+/* LOGO */
+.logo {
+    width: 180px;
+    height: auto;
+}
+
+/* BOTON ☰ */
+.menu-btn {
+    width: 60px;
+    height: 50px;
+
+    border: none;
+    border-radius: 25px;
+
+    background: #5b82b8;
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    transform: scale(1.05);
+}
+
+
+/* ========================= */
+/* MENU LATERAL DERECHO */
+/* ========================= */
+
+#menuLateral {
+    position: fixed;
+
+    top: 0;
+    right: -320px;
+
+    width: 280px;
+    height: 100vh;
+
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 80px 25px 25px;
+
+    box-sizing: border-box;
+
+    box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+
+    transition: right 0.4s ease;
+
+    z-index: 9999;
+}
+
+
+/* CUANDO EL MENU ESTA ABIERTO */
+
+#menuLateral.activo {
+    right: 0;
+}
+
+
+/* ENLACES */
+
+#menuLateral a {
+    text-decoration: none;
+
+    color: #333;
+
+    font-size: 17px;
+
+    padding: 15px;
+
+    border-bottom: 1px solid #ddd;
+
+    transition: 0.3s;
+}
+
+
+#menuLateral a:hover {
+    background: #e8eef7;
+
+    color: #315f9c;
+}
+
+
+/* BOTON CERRAR */
+
+.cerrar {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #5b82b8;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+</style>
 </head>
-  
 <body>
-    <header class="grado-header">
-        <div class="grado-header-contenido">
-            <span class="grado-etiqueta">ANUARIO IPC 2026</span>
-            <h1>1ro A</h1>
-            <p>
-                Una generación llena de momentos,
-                aprendizajes y recuerdos que quedarán para siempre.
-            </p>
+<header>
+    <img src="logoipc.jpg" alt="IPC" class="logo">
+
+    <button class="menu-btn" onclick="abrirMenu()">☰</button>
+</header>
+
+
+<!-- MENU LATERAL -->
+<nav id="menuLateral">
+
+    <button class="cerrar" onclick="cerrarMenu()">✕</button>
+
+    <a href="index.html">Inicio</a>
+
+    <a href="Historia de la Promo.html">
+        Historia del Colegio
+    </a>
+
+    <a href="Docentes.html">
+        Docentes
+    </a>
+
+    <a href="Estudiantes.html">
+        Estudiantes
+    </a>
+
+
+    <a href="Actividades Destacadas.html">
+        Actividades
+    </a>
+
+    <a href="Logros.html">
+        Logros
+    </a>
+
+    <a href="Recuerdos.html">
+        Recuerdos
+    </a>
+
+    <a href="Buscador.html">
+        🔍 Buscar
+    </a>
+
+    <a href="Créditos.html">
+        Créditos
+    </a>
+
+</nav>
+<h1>Buscador de Estudiantes</h1>
+
+<input type="text" id="busqueda" placeholder="Escribe un nombre">
+<button onclick="buscar()">Buscar</button>
+
+<div id="resultado"></div>
+
+<script>
+const estudiantes = [
+{nombre: "Ajanel Chó Dulce MariaJoseó", grado: "1roA", foto: "Matutina/1roa/Dulce Mariajosé Ajanel Chó.jpg"},
+{nombre: "Arevalo Macal Migdalia Angélica", grado: "1roA", foto: ""},
+{nombre: "Bailón Aguillar Astrid Mayerly", grado: "1roA", foto: ""},
+{nombre: "Bautista Jimenez Joshua Javier", grado: "1roA", foto: ""},
+{nombre: "Chacon Garcia Cristel Leonely", grado: "1roA", foto: ""},
+{nombre: "Chavez Rojas Hanelly Yarely", grado: "1roA", foto: ""},
+{nombre: "Chel Cao Nubia Nohemy", grado: "1roA", foto: ""},
+{nombre: "Coyoy Hernández Josué Emanuel", grado: "1roA", foto: ""},
+{nombre: "Garcia De León Yaseily Yaneth", grado: "1roA", foto: ""},
+{nombre: "Garcia Rodriguez Anderson Emanuel", grado: "1roA", foto: ""},
+{nombre: "Gordillo Montes Ashley Waleska", grado: "1roA", foto: ""},
+{nombre: "Hernandez Alonzo Josué Elias", grado: "1roA", foto: ""},
+{nombre: "Hernandez Cervantes Rosmery Elizabeth", grado: "1roA", foto: ""},
+{nombre: "Jetellá Ordonez Abner Alberto", grado: "1roA", foto: ""},
+{nombre: "Lopez López William Manuel", grado: "1roA", foto: ""},
+{nombre: "Matias Dominguez Pablo Sebastian", grado: "1roA", foto: ""},
+{nombre: "Medina Gutierrez Yoselin Tatiana", grado: "1roA", foto: ""},
+{nombre: "Ordoñez Vargas Heilyn Joely", grado: "1roA", foto: ""},
+{nombre: "Perez Marroquin Estuardo Noe", grado: "1roA", foto: ""},
+{nombre: "Puac Minchez Herick Daniel", grado: "1roA", foto: ""},
+{nombre: "Ramirez Malin Esther Abigail", grado: "1roA", foto: ""},
+{nombre: "Reyna Marroquin Gustavo Isaias", grado: "1roA", foto: ""},
+{nombre: "Riz Franco Sara Gabriela", grado: "1roA", foto: ""},
+{nombre: "Rosales Gimenez Monica Ashly Mishell", grado: "1roA", foto: ""},
+{nombre: "Salguero Lorenzo Susana Isabel", grado: "1roA", foto: ""},
+{nombre: "Sánchez Morales Fatima Clara Esperanza", grado: "1roA", foto: ""},
+{nombre: "Vasquez Bac Luis Daniel", grado: "1roA", foto: ""},
+{nombre: "Vasquez Samayoa Eboni Rachell", grado: "1roA", foto: ""},
+{nombre: "Zepeda Alvarez Andruw Yeshua", grado: "1roA", foto: ""},
+{nombre: "Gutierrez Rivera  Alvaro Ivan", grado: "1ro B", foto: ""},
+{nombre: "Alvizures Sipaque Estefani Dayana", grado: "1ro B", foto: ""},
+{nombre: "Archila Ortiz Jordan Estuardo", grado: "1ro B", foto: ""},
+{nombre: "Boctzoc Ichich Dayrin Urbina", grado: "1ro B", foto: ""},
+{nombre: "Contreras Uyun Angel José", grado: "1ro B", foto: ""},
+{nombre: "Contreras Uyun Julio Josué", grado: "1ro B", foto: ""},
+{nombre: "De La Roca Saldaña Keslher Gedeoni", grado: "1ro B", foto: ""},
+{nombre: "Divas Rafael Angel Moisés", grado: "1ro B", foto: ""},
+{nombre: "Emmanuel Pocon Christopher Antonio", grado: "1ro B", foto: ""},
+{nombre: "Garcia Narváez Dilan Estiven", grado: "1ro B", foto: ""},
+{nombre: "Gordio Casasola Sander Gael", grado: "1ro B", foto: ""},
+{nombre: "Guerra Audon Michael Josué", grado: "1ro B", foto: ""},
+{nombre: "Hernández Andrés Génesis Gabriela", grado: "1ro B", foto: ""},
+{nombre: "Hernández López Victor Alessandro", grado: "1ro B", foto: ""},
+{nombre: "Lancerio Romero Paola Génesis", grado: "1ro B", foto: ""},
+{nombre: "Lutin Gamarro Osmar Alexander", grado: "1ro B", foto: ""},
+{nombre: "Mazariegos Vasquez Anthony Jadiel", grado: "1ro B", foto: ""},
+{nombre: "Mejía Macario Bryan Mateo", grado: "1ro B", foto: ""},
+{nombre: "Morales López Diego Emmanuel", grado: "1ro B", foto: ""},
+{nombre: "Patzan Pío Melany Carolina", grado: "1ro B", foto: ""},
+{nombre: "Ramirez Jiménez Jhonatan David", grado: "1ro B", foto: ""},
+{nombre: "Ramirez Valenzuela Melany Fabiola", grado: "1ro B", foto: ""},
+{nombre: "Recinos García Fátima Andrea", grado: "1ro B", foto: ""},
+{nombre: "Rivera Martinez Axel Leonel", grado: "1ro B", foto: ""},
+{nombre: "Salgado López Pablo Alexander", grado: "1ro B", foto: ""},
+{nombre: "Salvador López Jorge Luis", grado: "1ro B", foto: ""},
+{nombre: "Vasquez Cadenas María Alejandra", grado: "1ro B", foto: ""},
+{nombre: "Arías Rodriguez Carlos Alberto", grado: "2do A", foto: ""},
+{nombre: "Barrios Rodríguez Rosa Isabella", grado: "2do A", foto: ""},
+{nombre: "Cayaxón Citalán Enrique Emanuel", grado: "2do A", foto: ""},
+{nombre: "García Castro Anyely Melissa", grado: "2do A", foto: ""},
+{nombre: "Hernández Alburez Yareli Ximena", grado: "2do A", foto: ""},
+{nombre: "Jiménez Ramos Jimena Nicol", grado: "2do A", foto: ""},
+{nombre: "Luque Mazariegos Karen Marisol", grado: "2do A", foto: ""},
+{nombre: "Marroquin Hernández Mario Josué", grado: "2do A", foto: ""},
+{nombre: "Martinez Chay Kely Avigail", grado: "2do A", foto: ""},
+{nombre: "Martinez Obispo Catherine Sulcely", grado: "2do A", foto: ""},
+{nombre: "Matias Martínez Sabrina Nicole", grado: "2do A", foto: ""},
+{nombre: "Osorio Vasquez Sergio Daniel", grado: "2do A", foto: ""},
+{nombre: "Pablo Leiva Josseline Alejandra", grado: "2do A", foto: ""},
+{nombre: "Pérez Pérez Dulce Nohemí", grado: "2do A", foto: ""},
+{nombre: "Piñones Reyes Génesis Andrea", grado: "2do A", foto: ""},
+{nombre: "Ramazzin Juárez Zender Johan Andre", grado: "2do A", foto: ""},
+{nombre: "Romero Pantaleón Anita Susana", grado: "2do A", foto: ""},
+{nombre: "Sinar Aguilar Jordan Isai", grado: "2do A", foto: ""},
+{nombre: "Ujpan López Diego Alfonso", grado: "2do A", foto: ""},
+{nombre: "Yanez Vasquez Yostin Rigoberto", grado: "2do A", foto: ""},
+{nombre: "Zet Alay Elie Jimena", grado: "2do A", foto: ""},
+{nombre: "Concua Cuevas Alan José", grado: "2do B", foto: ""},
+{nombre: "De La Cruz Noj Perla Marisol", grado: "2do B", foto: ""},
+{nombre: "Fuentes Tul Marleni Patricia", grado: "2do B", foto: ""},
+{nombre: "Getella Pérez Angel José Julián", grado: "2do B", foto: ""},
+{nombre: "Gómez Mejia Génesis Roxana", grado: "2do B", foto: ""},
+{nombre: "Guerra Audon Yermi Sahir", grado: "2do B", foto: ""},
+{nombre: "Gutierrez Solito Brandon Elian", grado: "2do B", foto: ""},
+{nombre: "Hurtado Montepeque Rodriguo Eduardo", grado: "2do B", foto: ""},
+{nombre: "Itzol Monzon Jannir Alejandra", grado: "2do B", foto: ""},
+{nombre: "Latin Domínguez Zeidy Maeli", grado: "2do B", foto: ""},
+{nombre: "López González Oliver Anthoand", grado: "2do B", foto: ""},
+{nombre: "López Zetino Wendy Sofia", grado: "2do B", foto: ""},
+{nombre: "Martinez Obispo Katerine Mariné", grado: "2do B", foto: ""},
+{nombre: "Mayen Cabrera Fernando Javier", grado: "2do B", foto: ""},
+{nombre: "Ocoix Mendez Keyli Mariana", grado: "2do B", foto: ""},
+{nombre: "Pérez Garcia MariCarmen Yohalin", grado: "2do B", foto: ""},
+{nombre: "Pérez López Samuel Abdias", grado: "2do B", foto: ""},
+{nombre: "Pineda Paz Samuel Efrain", grado: "2do B", foto: ""},
+{nombre: "Torres García Nataly Angely", grado: "2do B", foto: ""},
+{nombre: "Chibalán Sosof Eddy Arnoldo", grado: "Tercero A", foto: ""},
+{nombre: "Escobar Cruz Luis Josué", grado: "Tercero A", foto: ""},
+{nombre: "Feliciando Miranda Saida Marisol", grado: "Tercero A", foto: ""},
+{nombre: "Fernández López Mydeline Nicol", grado: "Tercero A", foto: ""},
+{nombre: "Friely Cabrera Kimberly Sofia", grado: "Tercero A", foto: ""},
+{nombre: "Garay Perez Carlos Augusto", grado: "Tercero A", foto: ""},
+{nombre: "García López Melanie Jimena", grado: "Tercero A", foto: ""},
+{nombre: "Garcia Navarrez Brayan David", grado: "Tercero A", foto: ""},
+{nombre: "Gomez Martinez Dana Mishel", grado: "Tercero A", foto: ""},
+{nombre: "González Flores Heidria Josmarly", grado: "Tercero A", foto: ""},
+{nombre: "Grijalva López Anderson Jasiel", grado: "Tercero A", foto: ""},
+{nombre: "Hernández Pérez Melvin Asael", grado: "Tercero A", foto: ""},
+{nombre: "José Esteban", grado: "Tercero A", foto: ""},
+{nombre: "Juarez Ramírez Kevin Salvador", grado: "Tercero A", foto: ""},
+{nombre: "Lopez Davila Lourdes Asusena", grado: "Tercero A", foto: ""},
+{nombre: "Parada Macha Luis Alejandro", grado: "Tercero A", foto: ""},
+{nombre: "Pérez Pascual Angy Vanessa", grado: "Tercero A", foto: ""},
+{nombre: "Puac Minchez Carlos Alexander", grado: "Tercero A", foto: ""},
+{nombre: "Rodríguez López Cristofer Josue", grado: "Tercero A", foto: ""},
+{nombre: "Siguaque Estrada Pablo Adrian", grado: "Tercero A", foto: ""},
+{nombre: "Barillas Calderas Keliver Osvanni", grado: "Tercero B", foto: ""},
+{nombre: "Cristales Rivera Jefferson Steven", grado: "Tercero B", foto: ""},
+{nombre: "Cuc Baten Naomi Yanet", grado: "Tercero B", foto: ""},
+{nombre: "Godoy Chital Cesar Yadiel", grado: "Tercero B", foto: ""},
+{nombre: "López Tinti Estefany Mishell", grado: "Tercero B", foto: ""},
+{nombre: "Mejia Macario Jackeline Mishell", grado: "Tercero B", foto: ""},
+{nombre: "Mendez Florian Brandon Antonio", grado: "Tercero B", foto: ""},
+{nombre: "Ortiz Ochaita Kenia Cristel", grado: "Tercero B", foto: ""},
+{nombre: "Pérez Pérez Lineth Naomy", grado: "Tercero B", foto: ""},
+{nombre: "Rosales Garcia Kaleb Eliazib", grado: "Tercero B", foto: ""},
+{nombre: "Rustrian Gómez Jefferson David", grado: "Tercero B", foto: ""},
+{nombre: "Sacalxot Cruz Angel Eduardo", grado: "Tercero B", foto: ""},
+{nombre: "Toj Rosales Jehizel Jasiel", grado: "Tercero B", foto: ""},
+{nombre: "Torres Maldonado Jackeline Dariana", grado: "Tercero B", foto: ""},
+{nombre: "Tum Nolasco Ariana Camila", grado: "Tercero B", foto: ""},
+{nombre: "Vasquez Dieguez Yuliana Yamilet", grado: "Tercero B", foto: ""},
+{nombre: "Vásquez Guzmán Maria Concepción", grado: "Tercero B", foto: ""},
+{nombre: "Villela Gálvez Dulce Daniel", grado: "Tercero B", foto: ""},
+{nombre: "Acajabón Hilario David Ottoniel", grado: "4to Bach A", foto: ""},
+{nombre: "Cahuec Gallardo Kevin Alejandro", grado: "4to Bach A", foto: ""},
+{nombre: "Chigüichon Lorenzo Angely Natali", grado: "4to Bach A", foto: ""},
+{nombre: "Chij Lucas Jeferson Estuardo", grado: "4to Bach A", foto: ""},
+{nombre: "Cordón Cruz Elsa Jimena", grado: "4to Bach A", foto: ""},
+{nombre: "De León Sanchez Gunith Eduardo", grado: "4to Bach A", foto: ""},
+{nombre: "Gálvez Mijangos Cristopher Isaac", grado: "4to Bach A", foto: ""},
+{nombre: "Godines García Geovani Alexander", grado: "4to Bach A", foto: ""},
+{nombre: "González Carrillo Jessenia Phaola", grado: "4to Bach A", foto: ""},
+{nombre: "Gutierrez Lopez Carlos David", grado: "4to Bach A", foto: ""},
+{nombre: "Hernández Morente Marielos Elizabeth", grado: "4to Bach A", foto: ""},
+{nombre: "Hernández Pérez Jose Daniel", grado: "4to Bach A", foto: ""},
+{nombre: "Hilario Palacios Anyeliy Jimena", grado: "4to Bach A", foto: ""},
+{nombre: "López Cabrera Antony Bernabé", grado: "4to Bach A", foto: ""},
+{nombre: "Marcos Leiva Cesar Ivan", grado: "4to Bach A", foto: ""},
+{nombre: "Mejia Ramírez Jostin Alexander", grado: "4to Bach A", foto: ""},
+{nombre: "Mendoza Martinez Erick Alexander", grado: "4to Bach A", foto: ""},
+{nombre: "Morales Cute Anderson Noe", grado: "4to Bach A", foto: ""},
+{nombre: "Pérez Elias Daniel", grado: "4to Bach A", foto: ""},
+{nombre: "Pu Martin Angel José", grado: "4to Bach A", foto: ""},
+{nombre: "Sanchez Rousselin Bábara Carolina", grado: "4to Bach A", foto: ""},
+{nombre: "Santiago Hernández Krishna Analy", grado: "4to Bach A", foto: ""},
+{nombre: "Vasquez López Victor Leonel", grado: "4to Bach A", foto: ""},
+{nombre: "Velasquez Gonzalez Joshua Raul", grado: "4to Bach A", foto: ""},
+{nombre: "Arreaza Najera Esmeralda Eunice", grado: "4to Bach B", foto: ""},
+{nombre: "Cancax Corominar Melany Fabiola", grado: "4to Bach B", foto: ""},
+{nombre: "Castillo Vail Angel Gabriel", grado: "4to Bach B", foto: ""},
+{nombre: "Cortez Pérez Bryan Josué", grado: "4to Bach B", foto: ""},
+{nombre: "Gómez Godínez Marcos Rubén", grado: "4to Bach B", foto: ""},
+{nombre: "Hernández Escobar Junior Alexis", grado: "4to Bach B", foto: ""},
+{nombre: "Hernández González Kimberly Noemí", grado: "4to Bach B", foto: ""},
+{nombre: "Hernández Saban Iliana Pamela", grado: "4to Bach B", foto: ""},
+{nombre: "Juarez Ramírez Ruth Azucena", grado: "4to Bach B", foto: ""},
+{nombre: "Lobos Martinez Yamileth Ashly", grado: "4to Bach B", foto: ""},
+{nombre: "Lobos Vasquez Miguel Angel", grado: "4to Bach B", foto: ""},
+{nombre: "López Sacap Dayana Lisseth", grado: "4to Bach B", foto: ""},
+{nombre: "Marroquin Quel Kleyver Estuardo", grado: "4to Bach B", foto: ""},
+{nombre: "Ramirez Grave Cristian Samuel", grado: "4to Bach B", foto: ""},
+{nombre: "Raymundo Guansin José Manuel", grado: "4to Bach B", foto: ""},
+{nombre: "Robledo Villela Josue David", grado: "4to Bach B", foto: ""},
+{nombre: "Sanchinelli Ramirez Kenet Augusto", grado: "4to Bach B", foto: ""},
+{nombre: "Vásquez Guzmán Anderson Yahir", grado: "4to Bach B", foto: ""},
+{nombre: "Velasquez Pineda Marilin Dayana", grado: "4to Bach B", foto: ""},
+{nombre: "Villanueva Mendez Yasmin Emily", grado: "4to Bach B", foto: ""},
+{nombre: "Aquino Herrera Emily Alessandra", grado: "4to Diseño", foto: ""},
+{nombre: "Barrios Gonzalez Margareth Rubi", grado: "4to Diseño", foto: ""},
+{nombre: "Carrillo Ramírez Fernando Daniel", grado: "4to Diseño", foto: ""},
+{nombre: "Contreras Monterroso Jennifer Abigail", grado: "4to Diseño", foto: ""},
+{nombre: "Jiménez Ramos Alex Giovanni", grado: "4to Diseño", foto: ""},
+{nombre: "Mejía Garcia Alisson Nahomi", grado: "4to Diseño", foto: ""},
+{nombre: "Orantes Arroyo Daphne Sofia", grado: "4to Diseño", foto: ""},
+{nombre: "Pérez Ruiz Génesis Adriana Estrella", grado: "4to Diseño", foto: ""},
+{nombre: "Riso Dionicio Eunice Abigail", grado: "4to Diseño", foto: ""},
+{nombre: "Serrano Parada Allison Yamileth", grado: "4to Diseño", foto: ""},
+{nombre: "Vasquez Vasquez Ingrid Fabiola", grado: "4to Diseño", foto: ""},
+{nombre: "Velasquez Gómez Flor de Maria", grado: "4to Diseño", foto: ""},
+{nombre: "Velasquez Zacarías Rodrigo Miguel", grado: "4to Diseño", foto: ""},
+{nombre: "Villatoro Ramirez Daniela Sarai", grado: "4to Diseño", foto: ""},
+{nombre: "Aceituno Zepeda Juan José", grado: "4A", foto: ""},
+{nombre: "Duran González Marlin Gricelda", grado: "4A", foto: ""},
+{nombre: "Erazo Cladero Martín Samuel", grado: "4A", foto: ""},
+{nombre: "Fuentes Yos Yasmi Fabiola", grado: "4A", foto: ""},
+{nombre: "Juarros Paz Michael Antonio", grado: "4A", foto: ""},
+{nombre: "Marchorro González Frank Yahir Salvador", grado: "4A", foto: ""},
+{nombre: "Romero Rosa Alisson Saraí", grado: "4A", foto: ""},
+{nombre: "Tupul Carrera Marylin Pamela", grado: "4A", foto: ""},
+{nombre: "Aguilar Mateo Estuardo Vinivio", grado: "4C", foto: ""},
+{nombre: "Barrios Cardona Aylin Melisa", grado: "4C", foto: ""},
+{nombre: "Chitic Xirum Wendy Paola", grado: "4C", foto: ""},
+{nombre: "Chuc Morales Kimberly Sarai", grado: "4C", foto: ""},
+{nombre: "Garcia Zúñiga Nayeli Fernanda", grado: "4C", foto: ""},
+{nombre: "Giménez Cuc Vivian Elizabeth", grado: "4C", foto: ""},
+{nombre: "Gonzalez Rodas Elisabet Noemi", grado: "4C", foto: ""},
+{nombre: "Hernandez Dimas Kimberly Adriana", grado: "4C", foto: ""},
+{nombre: "Morales D la Cruz Obed Joselito", grado: "4C", foto: ""},
+{nombre: "Pérez Álvarez Rigoberto Elías", grado: "4C", foto: ""},
+{nombre: "Pirir Alvarez Marta Azucena", grado: "4C", foto: ""},
+{nombre: "Sotoj Marroquin Claudia Elizabeth", grado: "4C", foto: ""},
+{nombre: "Terron García Darlyng Samanta", grado: "4C", foto: ""},
+{nombre: "Chichoj Sián Jaquelinne Amisadaí", grado: "4S", foto: ""},
+{nombre: "de Leon Ramírez Sandra Carolina", grado: "4S", foto: ""},
+{nombre: "Gabriel Sánchez Nataly Pamela", grado: "4S", foto: ""},
+{nombre: "Godínez Muñoz Sulema Nicol", grado: "4S", foto: ""},
+{nombre: "González García Angielyn Melissa", grado: "4S", foto: ""},
+{nombre: "Monzón Pérez Kimberly Brishtesh", grado: "4S", foto: ""},
+{nombre: "Suar Larias Leyli Mariela Beatriz", grado: "4S", foto: ""},
+{nombre: "Agbay Lorenzo Von Cristian", grado: "5A", foto: ""},
+{nombre: "Barrios del Cid Jehimy Daniela", grado: "5A", foto: ""},
+{nombre: "Cabrera Aguilar Keyla Yamileth", grado: "5A", foto: ""},
+{nombre: "Castro Conde Brittany Esperanza", grado: "5A", foto: ""},
+{nombre: "Coj Velasquez Aylin Jimena", grado: "5A", foto: ""},
+{nombre: "Coy Girón Jesis David", grado: "5A", foto: ""},
+{nombre: "García Godoy Astrid Selena", grado: "5A", foto: ""},
+{nombre: "García López Haylin Anai", grado: "5A", foto: ""},
+{nombre: "Gonzalez Ortega Allison Saraí", grado: "5A", foto: ""},
+{nombre: "Larias Sontay Stephanie Raquel", grado: "5A", foto: ""},
+{nombre: "Méndez Florian Esdras Eduardo", grado: "5A", foto: ""},
+{nombre: "Mendez Batz Jesseni Margarita", grado: "5A", foto: ""},
+{nombre: "Noj Gonzalez Allison Rosmery", grado: "5A", foto: ""},
+{nombre: "Nolasco Yool Allison Saraí", grado: "5A", foto: ""},
+{nombre: "Oscal Mansilla Antony Rafael", grado: "5A", foto: ""},
+{nombre: "Parada Gomez Katerin Clarissa", grado: "5A", foto: ""},
+{nombre: "Puzul Coché Heydi Nohemí Riveras Herrera", grado: "5A", foto: ""},
+{nombre: "Solis Sosa Lizbeth Lorena", grado: "5A", foto: ""},
+{nombre: "Tiul Vicente Brenda Sucely", grado: "5A", foto: ""},
+{nombre: "Vásquez Velásquez Daine Daniela", grado: "5A", foto: ""},
+{nombre: "Velásquez Zacarias Rosmery Vicenta", grado: "5A", foto: ""},
+{nombre: "Zetino Yoisin Hilari", grado: "5A", foto: ""},
+{nombre: "Chinchilla García Cinthia Analis", grado: "5C", foto: ""},
+{nombre: "Chó Fajardo Jaime Rubelsi Lizandro", grado: "5C", foto: ""},
+{nombre: "Cocon González Hugo Elias", grado: "5C", foto: ""},
+{nombre: "de León Torres Natali Gabriela", grado: "5C", foto: ""},
+{nombre: "Hernandez Robledo Josué Abraham", grado: "5C", foto: ""},
+{nombre: "Lara López Andrea Gloricel", grado: "5C", foto: ""},
+{nombre: "Lares Ixtuc Kenia Fabiola", grado: "5C", foto: ""},
+{nombre: "Molina Rodas Gladis Luzmila", grado: "5C", foto: ""},
+{nombre: "Reyes Isep Bárbara Alexandra", grado: "5C", foto: ""},
+{nombre: "Rodas Pérez Kimberly Daniela", grado: "5C", foto: ""},
+{nombre: "Sul Hernandez Isaías Misael", grado: "5C", foto: ""},
+{nombre: "Vega Lucas Jefferson Jancarlo", grado: "5C", foto: ""},
+{nombre: "López Juárez Lesly Adaly", grado: "5S", foto: ""},
+{nombre: "Jorge Pol Wendy Esperanza", grado: "5S", foto: ""},
+{nombre: "Garcia Vasquez Blanca Josefa", grado: "5S", foto: ""},
+{nombre: "Ajanel Celso Madelyn Yojana", grado: "5S", foto: ""},
+{nombre: "Agustin Guevara Daniel de Jesus", grado: "5BCA", foto: ""},
+{nombre: "Alfaro Mezquite Jeremy Tardelí", grado: "5BCA", foto: ""},
+{nombre: "Alvarado Rodriguez Luis Isaac", grado: "5BCA", foto: ""},
+{nombre: "Barrera Monroy Kimberly Gabriela", grado: "5BCA", foto: ""},
+{nombre: "Castillo Jiménez Britani Jhanyli", grado: "5BCA", foto: ""},
+{nombre: "Concua Cuevas Jeyson Fernando", grado: "5BCA", foto: ""},
+{nombre: "Coy Rudy José", grado: "5BCA", foto: ""},
+{nombre: "Garay Pérez Maria Daniela", grado: "5BCA", foto: ""},
+{nombre: "Garcia Rodríguez Henry Eliud", grado: "5BCA", foto: ""},
+{nombre: "Gomez Alvarado Antoni Edin", grado: "5BCA", foto: ""},
+{nombre: "Gonzalez de Jesús José Francisco", grado: "5BCA", foto: ""},
+{nombre: "Herrera Ramírez Carmen Lisset", grado: "5BCA", foto: ""},
+{nombre: "Luna Luna Byron Estuardo", grado: "5BCA", foto: ""},
+{nombre: "Mazariegos López Anderson Abraham", grado: "5BCA", foto: ""},
+{nombre: "Monroy Ordoñez Jorge Julio", grado: "5BCA", foto: ""},
+{nombre: "Orantes Arroyo Carlos Andres", grado: "5BCA", foto: ""},
+{nombre: "Pérez Garcia Dayrin Dayana", grado: "5BCA", foto: ""},
+{nombre: "Pineda Paz Adriana Esther", grado: "5BCA", foto: ""},
+{nombre: "Puac Minchez Estrella Noem", grado: "5BCA", foto: ""},
+{nombre: "Ramos Sosa Ingrid Noemí", grado: "5BCA", foto: ""},
+{nombre: "Revolorio Cardona Mario André", grado: "5BCA", foto: ""},
+{nombre: "Rodriguez Brito Jony Leonel", grado: "5BCA", foto: ""},
+{nombre: "Velásquez Cumes Gerber Ariel", grado: "5BCA", foto: ""},
+{nombre: "Aguilar Mateo Marvin Sebastian", grado: "5BCB", foto: ""},
+{nombre: "Alvizures Mezquite Kevin Omar", grado: "5BCB", foto: ""},
+{nombre: "Antonio Contreras Carlos Francisco", grado: "5BCB", foto: ""},
+{nombre: "Arrecis Gómez Eduardo Antonio", grado: "5BCB", foto: ""},
+{nombre: "Batres Alvarado Dayana Nicol", grado: "5BCB", foto: ""},
+{nombre: "Cashun Urizar Laura Sofia", grado: "5BCB", foto: ""},
+{nombre: "Castellanos Morales Rodrigo Alejandro", grado: "5BCB", foto: ""},
+{nombre: "Chivalan Sosof Yeni Yesenia", grado: "5BCB", foto: ""},
+{nombre: "Coz Jorge Saira Vanesa", grado: "5BCB", foto: ""},
+{nombre: "Herrera Enriquez Selvin Emanuel", grado: "5BCB", foto: ""},
+{nombre: "Herrarte Rodriguez Jeimy Aida", grado: "5BCB", foto: ""},
+{nombre: "Lutín Gamarro Mayly Gimena", grado: "5BCB", foto: ""},
+{nombre: "Martínez Pérez Ana Gabriela", grado: "5BCB", foto: ""},
+{nombre: "Mejía Macario Mari Melisa", grado: "5BCB", foto: ""},
+{nombre: "Morales Sucuquí Rudy Moisés", grado: "5BCB", foto: ""},
+{nombre: "Ordoñez Itzol David Alejandro", grado: "5BCB", foto: ""},
+{nombre: "Pelaez Tul Angelo Abysai", grado: "5BCB", foto: ""},
+{nombre: "Ramírez Donis Jeferson Abimael", grado: "5BCB", foto: ""},
+{nombre: "Rosales Reyes Angel Ismael", grado: "5BCB", foto: ""},
+{nombre: "Solano Rivera Cristopher Alexander", grado: "5BCB", foto: ""},
+{nombre: "Sosa Sherly Vanessa", grado: "5BCB", foto: ""},
+{nombre: "Barcenes López Febe Rachel", grado: "5BD", foto: ""},
+{nombre: "Bravo Romero Mélany Adaly", grado: "5BD", foto: ""},
+{nombre: "Friely Cabrera Angeline Nicole", grado: "5BD", foto: ""},
+{nombre: "Garcia Marroquin Jose Pablo", grado: "5BD", foto: ""},
+{nombre: "Herrera Garcia Maryori Alondra", grado: "5BD", foto: ""},
+{nombre: "Lopez Noj Angel Daniel", grado: "5BD", foto: ""},
+{nombre: "Orellana Chacon Fabian Alejandro", grado: "5BD", foto: ""},
+{nombre: "Peralta Gonzalez Neitan Andre", grado: "5BD", foto: ""},
+{nombre: "Rizo Dionicio Katherine Mishell", grado: "5BD", foto: ""},
+{nombre: "Trejo De la Cruz Elizabeth Nicol", grado: "5BD", foto: ""},
+{nombre: "Trujillo Cruz José Emanúel", grado: "5BD", foto: ""},
+{nombre: "Carballo Recinos Cristian Joel", grado: "6A", foto: ""},
+{nombre: "Chachalac Santos Anderson Gabriel", grado: "6A", foto: ""},
+{nombre: "Cosajay Cruz Jefferson Stiven", grado: "6A", foto: ""},
+{nombre: "Figueroa Aquino Estefani Yajaira", grado: "6A", foto: ""},
+{nombre: "Hidalgo Tomas Antoni Fabian", grado: "6A", foto: ""},
+{nombre: "Jorge Pol Maynor Tomás", grado: "6A", foto: ""},
+{nombre: "López Gonzalez Cristel Anelisse", grado: "6A", foto: ""},
+{nombre: "Orellana García Limny Melissa", grado: "6A", foto: ""},
+{nombre: "Rosales Gomez Carol Haydee", grado: "6A", foto: ""},
+{nombre: "Tiño Macario María Luisa", grado: "6A", foto: ""},
+{nombre: "Vásquez Chay Blanca Isabela", grado: "6A", foto: ""},
+{nombre: "Aguilon Aguilon Ruth Nohemi", grado: "6C", foto: ""},
+{nombre: "Auyon Revolorio Dayana Eunice", grado: "6C", foto: ""},
+{nombre: "Cabrera López Justhyn Eliel", grado: "6C", foto: ""},
+{nombre: "Cabrera Patzan Susana Guadalupe", grado: "6C", foto: ""},
+{nombre: "Carrillo Salazar Cristian Adolfo", grado: "6C", foto: ""},
+{nombre: "Castellanos Acajabon Abby Dessire Guadalupe", grado: "6C", foto: ""},
+{nombre: "Felipe Jom Shayna María Daly", grado: "6C", foto: ""},
+{nombre: "Gonzalez Rodas Jonathan Joel", grado: "6C", foto: ""},
+{nombre: "Hernández López Carlos Eduardo", grado: "6C", foto: ""},
+{nombre: "Hernández López Cristian Josúe", grado: "6C", foto: ""},
+{nombre: "Hurtado Montepeque Marta Sofía", grado: "6C", foto: ""},
+{nombre: "Morales Loarca Edgar Josué", grado: "6C", foto: ""},
+{nombre: "Pérez López Williams Orlando David", grado: "6C", foto: ""},
+{nombre: "Pérez Valenzuela", grado: "6C", foto: ""},
+{nombre: "Vásquez Guzmán Yeylin Marely", grado: "6C", foto: ""},
+{nombre: "Martínez Chiguichon Gabriela Paola", grado: "6S", foto: ""},
+{nombre: "Cbrera Palma Cindy Paola", grado: "6S", foto: ""},
+{nombre: "Méndez Ortiz Ilsi Elisabet", grado: "6S", foto: ""},
+{nombre: "Zepeda Vásquez  Nancy Paola", grado: "6S", foto: ""},
+{nombre: "Yol Quiejú Karla Matilde", grado: "6S", foto: ""},
+{nombre: "Pascual Pedro Lilian Melisa", grado: "6S", foto: ""}
+];
+
+function buscar(){
+    const texto = document.getElementById("busqueda").value.toLowerCase().trim();
+    const resultados = estudiantes.filter(e =>
+        e.nombre.toLowerCase().includes(texto)
+    );
+
+    const div = document.getElementById("resultado");
+
+    if(texto === ""){
+        div.innerHTML = "<p>Escribe el nombre de un estudiante.</p>";
+        return;
+    }
+
+    if(resultados.length === 0){
+        div.innerHTML = "<p>No se encontró ningún estudiante.</p>";
+        return;
+    }
+
+    div.innerHTML = resultados.map(e => `
+        <div class="card">
+            ${e.foto ? `<img src="${e.foto}" alt="Foto de ${e.nombre}" width="300" height="400">` : ""}
+            <h2>${e.nombre}</h2>
+            <p><strong>Grado:</strong> ${e.grado}</p>
         </div>
-    </header>
-  
-    <main class="grado-contenido">
-        <section class="seccion-estudiantes">
-            <div class="titulo-seccion-gr<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1ro A | Anuario IPC 2026</title>
-    <link rel="stylesheet" href="estilos.css">
-</head>
-  
-<body>
-    <header class="grado-header">
-        <div class="grado-header-contenido">
-            <span class="grado-etiqueta">ANUARIO IPC 2026</span>
-            <h1>1ro A</h1>
-            <p>
-                Una generación llena de momentos,
-                aprendizajes y recuerdos que quedarán para siempre.
-            </p>
-        </div>
-    </header>
-  
-    <main class="grado-contenido">
-        <section class="seccion-estudiantes">
-            <div class="titulo-seccion-grado">
-                <span>✦</span>
-                <h2>Nuestros estudiantes</h2>
-                <span>✦</span>
-            </div>
+    `).join("");
+}
 
-            <p class="descripcion-grado">
-                Conoce a quienes forman parte de 1ro A.
-            </p>
-          
-            <div class="estudiantes-grid">
+    const menuToggle = document.getElementById("menuToggle");
+const navbar = document.getElementById("navbar");
 
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Dulce Mariajosé Ajanel Chó.jpg" width=300 height=400
-                             alt="Dulce Mariajosé Ajanel Chó">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">01</span>
-                        <h3>Dulce Mariajosé Ajanel Chó</h3>
-                    </div>
-                </article>
+menuToggle.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+});
 
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Migdalia Angélica Arevalo Macal.jpg" width=300 height=400
-                             alt="Migdalia Angélica Arevalo Macal">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">02</span>
-                        <h3>Migdalia Angélica Arevalo Macal</h3>
-                    </div>
-                </article>
 
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Astrid Mayerly Bailón Aguilar.jpg" width=300 height=400
-                             alt="Astrid Mayerly Bailón Aguillar">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">03</span>
-                        <h3>Astrid Mayerly Bailón Aguillar</h3>
-                    </div>
-                </article>
+const dropdownBtn = document.querySelector(".dropdown-btn");
+const dropdown = document.querySelector(".dropdown");
 
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Joshua Javier Bautista Jimenez.jpg" width=300 height=400
-                             alt="Joshua Javier Bautista Jimenez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">04</span>
-                        <h3>Joshua Javier Bautista Jimenez</h3>
-                    </div>
-                </article>
+dropdownBtn.addEventListener("click", () => {
+    dropdown.classList.toggle("active");
+});
 
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Cristel Leonely Chajón Garcia.jpg" width=300 height=400
-                             alt="Cristel Leonely Chacon Garcia">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">05</span>
-                        <h3>Cristel Leonely Chacon Garcia</h3>
-                    </div>
-                </article>
+    function abrirMenu() {
+    document.getElementById("menuLateral").classList.add("activo");
+}
 
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Hanelly Yarely Chavez Rojas.jpg" width=300 height=400
-                             alt="Hanelly Yarely Chavez Rojas">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">06</span>
-                        <h3>Hanelly Yarely Chavez Rojas</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Nubia Nohemy Chel Cao.jpg" width=300 height=400
-                             alt="Nubia Nohemy Chel Cao">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">07</span>
-                        <h3>Nubia Nohemy Chel Cao</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Josué Emanuel Coyoy Hernández.jpg" width=300 height=400
-                             alt="Josué Emanuel Coyoy Hernández">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">08</span>
-                        <h3>Josué Emanuel Coyoy Hernández</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Yaseily Yaneth Garcia De Leon.jpg" width=300 height=400
-                             alt="Yaseily Yaneth Garcia De León">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">09</span>
-                        <h3>Yaseily Yaneth Garcia De León</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Anderson Emanuel Garcia Rodriguez.jpg" width=300 height=400
-                             alt="Anderson Emanuel Garcia Rodriguez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">10</span>
-                        <h3>Anderson Emanuel Garcia Rodriguez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Ashley Waleska Gordillo Montes.jpg" width=300 height=400
-                             alt="Ashley Waleska Gordillo Montes">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">11</span>
-                        <h3>Ashley Waleska Gordillo Montes</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Josué Elias Hernandez Alonzo.jpg" width=300 height=400
-                             alt="Josué Elias Hernandez Alonzo">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">12</span>
-                        <h3>Josué Elias Hernandez Alonzo</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Rosmery Elizabeth Hernández Cervantes.jpg" width=300 height=400
-                             alt="Rosmery Elizabeth Hernandez Cervantes">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">13</span>
-                        <h3>Rosmery Elizabeth Hernandez Cervantes</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Abner Alberto Jetellá Ordoñez.jpg" width=300 height=400
-                             alt="Abner Alberto Jetellá Ordonez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">14</span>
-                        <h3>Abner Alberto Jetellá Ordonez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/William Manuel Lopez López.jpg" width=300 height=400
-                             alt="William Manuel Lopez López">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">15</span>
-                        <h3>William Manuel Lopez López</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Pablo Sebastian Matias Domínguez.jpg" width=300 height=400
-                             alt="Pablo Sebastian Matias Dominguez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">16</span>
-                        <h3>Pablo Sebastian Matias Dominguez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Yoselin Tatiana Medina Gutiérrez.jpg" width=300 height=400
-                             alt="Yoselin Tatiana Medina Gutierrez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">17</span>
-                        <h3>Yoselin Tatiana Medina Gutierrez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Heilyn Joely Ordoñez Vargas.jpg" width=300 height=400
-                             alt="Heilyn Joely Ordoñez Vargas">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">18</span>
-                        <h3>Heilyn Joely Ordoñez Vargas</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Estuardo Noe Perez Marroquin.jpg" width=300 height=400
-                             alt="Estuardo Noe Perez Marroquin">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">19</span>
-                        <h3>Estuardo Noe Perez Marroquin</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Herick Daniel Puac Minchez.jpg" width=300 height=400
-                             alt="Herick Daniel Puac Minchez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">20</span>
-                        <h3>Herick Daniel Puac Minchez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Esther Abigail Ramirez Malín.jpg" width=300 height=400
-                             alt="Esther Abigail Ramirez Malin">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">21</span>
-                        <h3>Esther Abigail Ramirez Malin</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Gustavo Isaias Reyna Marroquín.jpg" width=300 height=400
-                             alt="Gustavo Isaias Reyna Marroquin">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">22</span>
-                        <h3>Gustavo Isaias Reyna Marroquin</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Sara Gabriela Riz Franco.jpg" width=300 height=400
-                             alt="Sara Gabriela Riz Franco">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">23</span>
-                        <h3>Sara Gabriela Riz Franco</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Monica Ashly Mishell Rosales Gimenez.jpg" width=300 height=400
-                             alt="Monica Ashly Mishell Rosales Gimenez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">24</span>
-                        <h3>Monica Ashly Mishell Rosales Gimenez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Susana Isabel Salguero Lorenzo.jpg" width=300 height=400
-                             alt="Susana Isabel Salguero Lorenzo">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">25</span>
-                        <h3>Susana Isabel Salguero Lorenzo</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Fatima Clara Esperanza Sánchez Morales.jpg" width=300 height=400
-                             alt="Fatima Clara Esperanza Sánchez Morales">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">26</span>
-                        <h3>Fatima Clara Esperanza Sánchez Morales</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Luis Daniel Vasquez Bac.jpg" width=300 height=400
-                             alt="Luis Daniel Vasquez Bac">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">27</span>
-                        <h3>Luis Daniel Vasquez Bac</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Eboni Rachell Vasquez Samayoa.jpg" width=300 height=400
-                             alt="Eboni Rachell Vasquez Samayoa">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">28</span>
-                        <h3>Eboni Rachell Vasquez Samayoa</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Andruw Yeshua Zepeda Alvarez.jpg" width=300 height=400
-                             alt="Andruw Yeshua Zepeda Alvarez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">29</span>
-                        <h3>Andruw Yeshua Zepeda Alvarez</h3>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <div class="volver-grado">
-            <a href="Estudiantes.html" class="boton-volver">
-                ← Volver a estudiantes
-            </a>
-        </div>
-
-    </main>
-
-    <footer class="footer-aniversario">
-        <p>
-            Anuario IPC 2026 · 1ro A
-        </p>
-    </footer>
-
-</body>
-</html>
-ado">
-                <span>✦</span>
-                <h2>Nuestros estudiantes</h2>
-                <span>✦</span>
-            </div>
-
-            <p class="descripcion-grado">
-                Conoce a quienes forman parte de 1ro A.
-            </p>
-          
-            <div class="estudiantes-grid">
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Dulce Mariajosé Ajanel Chó.jpg" width=300 height=400
-                             alt="Dulce Mariajosé Ajanel Chó">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">01</span>
-                        <h3>Dulce Mariajosé Ajanel Chó</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Migdalia Angélica Arevalo Macal.jpg" width=300 height=400
-                             alt="Migdalia Angélica Arevalo Macal">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">02</span>
-                        <h3>Migdalia Angélica Arevalo Macal</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Astrid Mayerly Bailón Aguillar.jpg" width=300 height=400
-                             alt="Astrid Mayerly Bailón Aguillar">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">03</span>
-                        <h3>Astrid Mayerly Bailón Aguillar</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Joshua Javier Bautista Jimenez.jpg" width=300 height=400
-                             alt="Joshua Javier Bautista Jimenez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">04</span>
-                        <h3>Joshua Javier Bautista Jimenez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Cristel Leonely Chacon Garcia.jpg" width=300 height=400
-                             alt="Cristel Leonely Chacon Garcia">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">05</span>
-                        <h3>Cristel Leonely Chacon Garcia</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Hanelly Yarely Chavez Rojas.jpg" width=300 height=400
-                             alt="Hanelly Yarely Chavez Rojas">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">06</span>
-                        <h3>Hanelly Yarely Chavez Rojas</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Nubia Nohemy Chel Cao.jpg" width=300 height=400
-                             alt="Nubia Nohemy Chel Cao">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">07</span>
-                        <h3>Nubia Nohemy Chel Cao</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Josué Emanuel Coyoy Hernández.jpg" width=300 height=400
-                             alt="Josué Emanuel Coyoy Hernández">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">08</span>
-                        <h3>Josué Emanuel Coyoy Hernández</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Yaseily Yaneth Garcia De León.jpg" width=300 height=400
-                             alt="Yaseily Yaneth Garcia De León">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">09</span>
-                        <h3>Yaseily Yaneth Garcia De León</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Anderson Emanuel Garcia Rodriguez.jpg" width=300 height=400
-                             alt="Anderson Emanuel Garcia Rodriguez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">10</span>
-                        <h3>Anderson Emanuel Garcia Rodriguez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Ashley Waleska Gordillo Montes.jpg" width=300 height=400
-                             alt="Ashley Waleska Gordillo Montes">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">11</span>
-                        <h3>Ashley Waleska Gordillo Montes</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Josué Elias Hernandez Alonzo.jpg" width=300 height=400
-                             alt="Josué Elias Hernandez Alonzo">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">12</span>
-                        <h3>Josué Elias Hernandez Alonzo</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Rosmery Elizabeth Hernandez Cervantes.jpg" width=300 height=400
-                             alt="Rosmery Elizabeth Hernandez Cervantes">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">13</span>
-                        <h3>Rosmery Elizabeth Hernandez Cervantes</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Abner Alberto Jetellá Ordonez.jpg" width=300 height=400
-                             alt="Abner Alberto Jetellá Ordonez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">14</span>
-                        <h3>Abner Alberto Jetellá Ordonez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/William Manuel Lopez López.jpg" width=300 height=400
-                             alt="William Manuel Lopez López">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">15</span>
-                        <h3>William Manuel Lopez López</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Pablo Sebastian Matias Dominguez.jpg" width=300 height=400
-                             alt="Pablo Sebastian Matias Dominguez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">16</span>
-                        <h3>Pablo Sebastian Matias Dominguez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Yoselin Tatiana Medina Gutierrez.jpg" width=300 height=400
-                             alt="Yoselin Tatiana Medina Gutierrez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">17</span>
-                        <h3>Yoselin Tatiana Medina Gutierrez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Heilyn Joely Ordoñez Vargas.jpg" width=300 height=400
-                             alt="Heilyn Joely Ordoñez Vargas">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">18</span>
-                        <h3>Heilyn Joely Ordoñez Vargas</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Estuardo Noe Perez Marroquin.jpg" width=300 height=400
-                             alt="Estuardo Noe Perez Marroquin">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">19</span>
-                        <h3>Estuardo Noe Perez Marroquin</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Herick Daniel Puac Minchez.jpg" width=300 height=400
-                             alt="Herick Daniel Puac Minchez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">20</span>
-                        <h3>Herick Daniel Puac Minchez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Esther Abigail Ramirez Malin.jpg" width=300 height=400
-                             alt="Esther Abigail Ramirez Malin">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">21</span>
-                        <h3>Esther Abigail Ramirez Malin</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Gustavo Isaias Reyna Marroquin.jpg" width=300 height=400
-                             alt="Gustavo Isaias Reyna Marroquin">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">22</span>
-                        <h3>Gustavo Isaias Reyna Marroquin</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Sara Gabriela Riz Franco.jpg" width=300 height=400
-                             alt="Sara Gabriela Riz Franco">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">23</span>
-                        <h3>Sara Gabriela Riz Franco</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Monica Ashly Mishell Rosales Gimenez.jpg" width=300 height=400
-                             alt="Monica Ashly Mishell Rosales Gimenez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">24</span>
-                        <h3>Monica Ashly Mishell Rosales Gimenez</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Susana Isabel Salguero Lorenzo.jpg" width=300 height=400
-                             alt="Susana Isabel Salguero Lorenzo">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">25</span>
-                        <h3>Susana Isabel Salguero Lorenzo</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Fatima Clara Esperanza Sánchez Morales.jpg" width=300 height=400
-                             alt="Fatima Clara Esperanza Sánchez Morales">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">26</span>
-                        <h3>Fatima Clara Esperanza Sánchez Morales</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Luis Daniel Vasquez Bac.jpg" width=300 height=400
-                             alt="Luis Daniel Vasquez Bac">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">27</span>
-                        <h3>Luis Daniel Vasquez Bac</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Eboni Rachell Vasquez Samayoa.jpg" width=300 height=400
-                             alt="Eboni Rachell Vasquez Samayoa">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">28</span>
-                        <h3>Eboni Rachell Vasquez Samayoa</h3>
-                    </div>
-                </article>
-
-                <article class="tarjeta-estudiante">
-                    <div class="foto-estudiante">
-                        <img src="Matutina/1roa/Andruw Yeshua Zepeda Alvarez.jpg" width=300 height=400
-                             alt="Andruw Yeshua Zepeda Alvarez">
-                    </div>
-                    <div class="info-estudiante">
-                        <span class="numero-estudiante">29</span>
-                        <h3>Andruw Yeshua Zepeda Alvarez</h3>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <div class="volver-grado">
-            <a href="Estudiantes.html" class="boton-volver">
-                ← Volver a estudiantes
-            </a>
-        </div>
-
-    </main>
-
-    <footer class="footer-aniversario">
-        <p>
-            Anuario IPC 2026 · 1ro A
-        </p>
-    </footer>
+function cerrarMenu() {
+    document.getElementById("menuLateral").classList.remove("activo");
+}
+</script>
 
 </body>
 </html>
