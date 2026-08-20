@@ -143,60 +143,159 @@ button{
     margin-top:10px;
     color:#555;
 }
+    .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 40px;
+
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* LOGO */
+
+.logo img {
+    width: 130px;
+    height: auto;
+    display: block;
+}
+
+/* BOTON DEL MENU */
+
+.menu-toggle {
+    background: #4f73b8;
+    color: white;
+
+    border: none;
+    border-radius: 12px;
+
+    width: 60px;
+    height: 50px;
+
+    font-size: 25px;
+    cursor: pointer;
+
+    margin-left: auto;
+}
+
+/* MENU OCULTO */
+
+.navbar {
+    display: none;
+
+    position: absolute;
+
+    top: 100%;
+    right: 40px;
+
+    width: 250px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+    z-index: 1000;
+}
+
+/* CUANDO EL MENU ESTA ABIERTO */
+
+.navbar.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ENLACES */
+
+.navbar a {
+    text-decoration: none;
+    color: #333;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background: #e9eef9;
+}
+
+/* DROPDOWN */
+
+.dropdown {
+    width: 100%;
+}
+
+.dropdown-btn {
+    width: 100%;
+
+    border: none;
+    background: transparent;
+
+    padding: 12px;
+
+    text-align: left;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+/* OPCIONES OCULTAS */
+
+.dropdown-content {
+    display: none;
+
+    flex-direction: column;
+
+    padding-left: 15px;
+}
+
+/* MOSTRAR OPCIONES */
+
+.dropdown.active .dropdown-content {
+    display: flex;
+}
 
 </style>
 </head>
 <body>
- <header>
-         <header>
-        <img src="logoipc.jpg" alt="IPC" class="logo">
-        <button class="menu-btn" onclick="abrirMenu()">
-            ☰
-        </button>
-    </header>
-    <nav id="menuLateral">
-        <button class="cerrar" onclick="cerrarMenu()">
-            ✕
-        </button>
+ <header class="header">
+    <div class="logo">
+        <img src="img/logo.png" alt="Logo">
+    </div>
+
+    <button class="menu-toggle" id="menuToggle">
+        ☰
+    </button>
+
+    <nav class="navbar" id="navbar">
         <a href="index.html">Inicio</a>
-        <a href="Historia de la Promo.html">
-            Historia del Colegio
-        </a>
-        <a href="Docentes.html">
-            Docentes
-        </a>
-        <li class="dropdown">
-            <a href="#">
-                Estudiantes ▾
-            </a>
-            <ul class="submenu">
-                <li>
-                    <a href="MatutinaE.html">
-                        Matutina
-                    </a>
-                </li>
-                <li>
-                    <a href="VespertinaE.html">
-                        Vespertina
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <a href="Actividades Destacadas.html">
-            Actividades
-        </a>
-        <a href="Logros.html">
-            Logros
-        </a>
-        <a href="Recuerdos.html">
-            Recuerdos
-        </a>
-        <a href="Buscador.html">
-            🔍 Buscar
-        </a>
-        <a href="Créditos.html">
-            Créditos
-        </a>
+        <a href="historia.html">Historia del Colegio</a>
+        <a href="docentes.html">Docentes</a>
+
+        <div class="dropdown">
+            <button class="dropdown-btn">Estudiantes ▼</button>
+
+            <div class="dropdown-content">
+                <a href="matutina.html">Matutina</a>
+                <a href="vespertina.html">Vespertina</a>
+            </div>
+        </div>
+
+        <a href="actividades.html">Actividades</a>
+        <a href="logos.html">Logos</a>
+        <a href="recuerdos.html">Recuerdos</a>
+        <a href="buscar.html">🔍 Buscar</a>
+        <a href="creditos.html">Créditos</a>
     </nav>
 </header>
 <h1>Buscador de Estudiantes</h1>
@@ -572,6 +671,21 @@ function buscar(){
         `<h3>${e.nombre}</h3><p>Grado: ${e.grado}</p><hr>`
     ).join("");
 }
+
+    const menuToggle = document.getElementById("menuToggle");
+const navbar = document.getElementById("navbar");
+
+menuToggle.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+});
+
+
+const dropdownBtn = document.querySelector(".dropdown-btn");
+const dropdown = document.querySelector(".dropdown");
+
+dropdownBtn.addEventListener("click", () => {
+    dropdown.classList.toggle("active");
+});
 </script>
 
 </body>
