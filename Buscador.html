@@ -593,39 +593,33 @@ const estudiantes = [
 {nombre: "Pascual Pedro Lilian Melisa", grado: "6S"}
 ];
 
-const normalizar = texto =>
-    texto
+function limpiar(texto){
+    return texto
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase();
+}
 
-function buscar() {
-    const texto = normalizar(
-        document.getElementById("busqueda").value.trim()
+function buscar(){
+    const texto = limpiar(document.getElementById("busqueda").value);
+
+    const resultados = estudiantes.filter(e =>
+        limpiar(e.nombre).includes(texto)
     );
 
     const div = document.getElementById("resultado");
 
-    if (texto === "") {
-        div.innerHTML = "<p>Escribe un nombre para buscar.</p>";
+    if(resultados.length === 0){
+        div.innerHTML = "<p>No se encontró ningún estudiante.</p>";
         return;
     }
 
-    div.innerHTML = resultados.map(e => `
-    <div class="card">
-
-        <img src="${e.foto}" 
-             alt="${e.nombre}"
-             onerror="this.src='sin-foto.png'">
-
-        <h2>${e.nombre}</h2>
-
-        <p>
-            <strong>Grado:</strong> ${e.grado}
-        </p>
-
-    </div>
-`).join("");
+    div.innerHTML = resultados.map(e =>
+        `<h3>${e.nombre}</h3>
+         <p>Grado: ${e.grado}</p>
+         <hr>`
+    ).join("");
+}
 
 document.getElementById("busqueda").addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
