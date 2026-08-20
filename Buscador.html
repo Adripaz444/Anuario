@@ -2,58 +2,222 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Buscador de Estudiantes</title>
 
 <style>
+body{font-family:Arial,sans-serif;text-align:center;padding:40px;}
+input{padding:10px;width:300px;}
+button{padding:10px 15px;}
+#resultado{margin-top:20px;}
 
 :root{
     --azul-principal:#4B5FD0;
     --azul-claro:#5E90C8;
     --celeste:#5CC3E0;
     --fondo:#F2F2F2;
+    --blanco:#FFFFFF;
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
-
-body{
+@@ -28,63 +25,103 @@
     background:var(--fondo);
     min-height:100vh;
     overflow-x:hidden;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    position:relative;
 }
 
-/* HEADER */
+/* FIGURAS DECORATIVAS */
 
-header{
+body::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--azul-claro),var(--celeste));
+    top:-200px;
+    right:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:var(--azul-claro);
+    bottom:-200px;
+    left:-150px;
+    z-index:-1;
+}
+
+/* CONTENEDOR */
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    padding-top:120px;
+    text-align:center;
+
+}
+
+h1{
+    color:var(--azul-principal);
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    color:#666;
+    margin-bottom:40px;
+}
+
+/* BUSCADOR */
+
+.buscador{
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
 }
+
+@@ -94,11 +131,10 @@
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    outline:none;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+button{
+    padding:15px 25px;
+    border:none;
+    border-radius:30px;
+@@ -109,524 +145,172 @@
+    );
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* TARJETA */
+
+.resultado{
+    max-width:600px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    margin-top:20px;
+}
+
+.card img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:15px;
+}
+
+.card h2{
+    color:var(--azul-principal);
+}
+
+.card p{
+    margin-top:10px;
+    color:#555;
+}
+
+
+
+.logo{
+    width:120px;
+}
+
+
+
+
 
 .logo{
     width:120px;
     height:auto;
 }
 
-.menu-btn{
-    font-size:30px;
-    border:none;
-    background:none;
-    cursor:pointer;
-}
-
-/* MENU LATERAL */
-
-#menuLateral{
+    #menuLateral{
     position:fixed;
     top:0;
-    left:-300px;
+    right:-300px; /* ahora empieza oculto a la derecha */
+    left:auto;
     width:280px;
     height:100%;
     background:white;
@@ -61,30 +225,8 @@ header{
     transition:.3s;
     z-index:9999;
     overflow-y:auto;
+    padding-top:20px;
 }
-
-#menuLateral a{
-    display:block;
-    padding:15px 20px;
-    text-decoration:none;
-    color:#333;
-}
-
-#menuLateral a:hover{
-    background:#f0f0f0;
-}
-
-.cerrar{
-    width:100%;
-    padding:15px;
-    border:none;
-    background:#4B5FD0;
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-}
-
-/* SUBMENU */
 
 .dropdown{
     position:relative;
@@ -92,7 +234,13 @@ header{
 
 .submenu{
     display:none;
-    background:#f8f8f8;
+    position:absolute;
+    top:0;
+    right:100%; /* sale hacia la izquierda */
+    width:180px;
+    background:white;
+    box-shadow:0 0 15px rgba(0,0,0,.15);
+    border-radius:10px;
 }
 
 .dropdown:hover .submenu{
@@ -100,128 +248,67 @@ header{
 }
 
 .submenu a{
-    padding-left:40px;
+    display:block;
+    padding:12px;
 }
-
-/* CONTENIDO */
-
-.container{
-    width:90%;
-    max-width:1000px;
-    margin:auto;
-    text-align:center;
-    padding-top:50px;
-}
-
-h1{
-    color:var(--azul-principal);
-    margin-bottom:30px;
-}
-
-.buscador{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-input{
-    width:400px;
-    max-width:90%;
-    padding:15px;
-    border:none;
-    border-radius:30px;
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-}
-
-button.buscar-btn{
-    padding:15px 25px;
-    border:none;
-    border-radius:30px;
-    background:linear-gradient(
-        135deg,
-        var(--azul-principal),
-        var(--celeste)
-    );
-    color:white;
-    cursor:pointer;
-}
-
-.card{
-    background:white;
-    border-radius:20px;
-    padding:20px;
-    margin-top:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-}
-
-.card h2{
-    color:#4B5FD0;
-}
-
 </style>
 </head>
 <body>
+   <header>
+        <img src="logoipc.jpg" alt="IPC" class="logo">
+        <button class="menu-btn" onclick="abrirMenu()">
+            ☰
+        </button>
 
-<header>
+    </header>
+    <nav id="menuLateral">
+        <button class="cerrar" onclick="cerrarMenu()">✕</button>
+        <a href="index.html">Inicio</a>
+        <a href="Historia de la Promo.html">Historia del Colegio</a>
+        <a href="Docentes.html">Docentes</a>
+         <li class="dropdown">
+    <a href="#">Estudiantes ▾</a>
 
-    <img src="logoipc.jpg" class="logo">
-
-    <button class="menu-btn" onclick="abrirMenu()">
-        ☰
-    </button>
-
-</header>
-
-<nav id="menuLateral">
-
-    <button class="cerrar" onclick="cerrarMenu()">
-        ✕
-    </button>
-
-    <a href="index.html">Inicio</a>
-
-    <a href="Historia.html">Historia del Colegio</a>
-
-    <a href="Docentes.html">Docentes</a>
-
-    <div class="dropdown">
-
-        <a href="#">Estudiantes ▾</a>
-
-        <div class="submenu">
+    <ul class="submenu">
+        <li>
             <a href="MatutinaE.html">🌞 Matutina</a>
+        </li>
+
+        <li>
+
             <a href="VespertinaE.html">🌙 Vespertina</a>
-        </div>
-
-    </div>
-
-    <a href="Actividades.html">Actividades</a>
-    <a href="Logros.html">Logros</a>
-    <a href="Recuerdos.html">Recuerdos</a>
-    <a href="Buscador.html">🔍 Buscar</a>
-    <a href="Creditos.html">Créditos</a>
-
-</nav>
-
+        </li>
+    </ul>
+</li>
+        <li>
+            <a href="VespertinaE.html">Vespertina</a>
+        </li>
+    </ul>
+</li>
+        <a href="Actividades Destacadas.html">Actividades </a>
+        <a href="Logros.html">Logros</a>
+        <a href="Recuerdos.html">Recuerdos</a>
+        <a href="Buscador.html">🔍 Buscar</a>
+        <a href="Créditos.html">Créditos</a>
+    </nav>
 <div class="container">
 
     <h1>Buscador de Estudiantes</h1>
 
     <div class="buscador">
+        <input type="text" id="busqueda" placeholder="Escribe un nombre">
+        <button onclick="buscar()">Buscar</button>
 
-        <input
-            type="text"
-            id="busqueda"
-            placeholder="Escribe un nombre"
-        >
 
-        <button
-            class="buscar-btn"
-            onclick="buscar()"
-        >
-            Buscar
-        </button>
+
+
+
+
+
+
+
+
+
 
     </div>
 
@@ -232,22 +319,351 @@ button.buscar-btn{
 <script>
 
 const estudiantes = [
-
-    {
-        nombre:"Anderson Abraham Mazariegos López",
-        grado:"5BCA"
-    },
-
-    {
-        nombre:"José Francisco González",
-        grado:"5BCA"
-    },
-
-    {
-        nombre:"Estefani Dayana Alvizures",
-        grado:"1ro B"
-    }
-
+{nombre: "Ajanel Chó Dulce MariaJoseó", grado: "1roA"},
+{nombre: "Arevalo Macal Migdalia Angélica", grado: "1roA"},
+{nombre: "Bailón Aguillar Astrid Mayerly", grado: "1roA"},
+{nombre: "Bautista Jimenez Joshua Javier", grado: "1roA"},
+{nombre: "Chacon Garcia Cristel Leonely", grado: "1roA"},
+{nombre: "Chavez Rojas Hanelly Yarely", grado: "1roA"},
+{nombre: "Chel Cao Nubia Nohemy", grado: "1roA"},
+{nombre: "Coyoy Hernández Josué Emanuel", grado: "1roA"},
+{nombre: "Garcia De León Yaseily Yaneth", grado: "1roA"},
+{nombre: "Garcia Rodriguez Anderson Emanuel", grado: "1roA"},
+{nombre: "Gordillo Montes Ashley Waleska", grado: "1roA"},
+{nombre: "Hernandez Alonzo Josué Elias", grado: "1roA"},
+{nombre: "Hernandez Cervantes Rosmery Elizabeth", grado: "1roA"},
+{nombre: "Jetellá Ordonez Abner Alberto", grado: "1roA"},
+{nombre: "Lopez López William Manuel", grado: "1roA"},
+{nombre: "Matias Dominguez Pablo Sebastian", grado: "1roA"},
+{nombre: "Medina Gutierrez Yoselin Tatiana", grado: "1roA"},
+{nombre: "Ordoñez Vargas Heilyn Joely", grado: "1roA"},
+{nombre: "Perez Marroquin Estuardo Noe", grado: "1roA"},
+{nombre: "Puac Minchez Herick Daniel", grado: "1roA"},
+{nombre: "Ramirez Malin Esther Abigail", grado: "1roA"},
+{nombre: "Reyna Marroquin Gustavo Isaias", grado: "1roA"},
+{nombre: "Riz Franco Sara Gabriela", grado: "1roA"},
+{nombre: "Rosales Gimenez Monica Ashly Mishell", grado: "1roA"},
+{nombre: "Salguero Lorenzo Susana Isabel", grado: "1roA"},
+{nombre: "Sánchez Morales Fatima Clara Esperanza", grado: "1roA"},
+{nombre: "Vasquez Bac Luis Daniel", grado: "1roA"},
+{nombre: "Vasquez Samayoa Eboni Rachell", grado: "1roA"},
+{nombre: "Zepeda Alvarez Andruw Yeshua", grado: "1roA"},
+{nombre: "Gutierrez Rivera  Alvaro Ivan", grado: "1ro B"},
+{nombre: "Alvizures Sipaque Estefani Dayana", grado: "1ro B"},
+{nombre: "Archila Ortiz Jordan Estuardo", grado: "1ro B"},
+{nombre: "Boctzoc Ichich Dayrin Urbina", grado: "1ro B"},
+{nombre: "Contreras Uyun Angel José", grado: "1ro B"},
+{nombre: "Contreras Uyun Julio Josué", grado: "1ro B"},
+{nombre: "De La Roca Saldaña Keslher Gedeoni", grado: "1ro B"},
+{nombre: "Divas Rafael Angel Moisés", grado: "1ro B"},
+{nombre: "Emmanuel Pocon Christopher Antonio", grado: "1ro B"},
+{nombre: "Garcia Narváez Dilan Estiven", grado: "1ro B"},
+{nombre: "Gordio Casasola Sander Gael", grado: "1ro B"},
+{nombre: "Guerra Audon Michael Josué", grado: "1ro B"},
+{nombre: "Hernández Andrés Génesis Gabriela", grado: "1ro B"},
+{nombre: "Hernández López Victor Alessandro", grado: "1ro B"},
+{nombre: "Lancerio Romero Paola Génesis", grado: "1ro B"},
+{nombre: "Lutin Gamarro Osmar Alexander", grado: "1ro B"},
+{nombre: "Mazariegos Vasquez Anthony Jadiel", grado: "1ro B"},
+{nombre: "Mejía Macario Bryan Mateo", grado: "1ro B"},
+{nombre: "Morales López Diego Emmanuel", grado: "1ro B"},
+{nombre: "Patzan Pío Melany Carolina", grado: "1ro B"},
+{nombre: "Ramirez Jiménez Jhonatan David", grado: "1ro B"},
+{nombre: "Ramirez Valenzuela Melany Fabiola", grado: "1ro B"},
+{nombre: "Recinos García Fátima Andrea", grado: "1ro B"},
+{nombre: "Rivera Martinez Axel Leonel", grado: "1ro B"},
+{nombre: "Salgado López Pablo Alexander", grado: "1ro B"},
+{nombre: "Salvador López Jorge Luis", grado: "1ro B"},
+{nombre: "Vasquez Cadenas María Alejandra", grado: "1ro B"},
+{nombre: "Arías Rodriguez Carlos Alberto", grado: "2do A"},
+{nombre: "Barrios Rodríguez Rosa Isabella", grado: "2do A"},
+{nombre: "Cayaxón Citalán Enrique Emanuel", grado: "2do A"},
+{nombre: "García Castro Anyely Melissa", grado: "2do A"},
+{nombre: "Hernández Alburez Yareli Ximena", grado: "2do A"},
+{nombre: "Jiménez Ramos Jimena Nicol", grado: "2do A"},
+{nombre: "Luque Mazariegos Karen Marisol", grado: "2do A"},
+{nombre: "Marroquin Hernández Mario Josué", grado: "2do A"},
+{nombre: "Martinez Chay Kely Avigail", grado: "2do A"},
+{nombre: "Martinez Obispo Catherine Sulcely", grado: "2do A"},
+{nombre: "Matias Martínez Sabrina Nicole", grado: "2do A"},
+{nombre: "Osorio Vasquez Sergio Daniel", grado: "2do A"},
+{nombre: "Pablo Leiva Josseline Alejandra", grado: "2do A"},
+{nombre: "Pérez Pérez Dulce Nohemí", grado: "2do A"},
+{nombre: "Piñones Reyes Génesis Andrea", grado: "2do A"},
+{nombre: "Ramazzin Juárez Zender Johan Andre", grado: "2do A"},
+{nombre: "Romero Pantaleón Anita Susana", grado: "2do A"},
+{nombre: "Sinar Aguilar Jordan Isai", grado: "2do A"},
+{nombre: "Ujpan López Diego Alfonso", grado: "2do A"},
+{nombre: "Yanez Vasquez Yostin Rigoberto", grado: "2do A"},
+{nombre: "Zet Alay Elie Jimena", grado: "2do A"},
+{nombre: "Concua Cuevas Alan José", grado: "2do B"},
+{nombre: "De La Cruz Noj Perla Marisol", grado: "2do B"},
+{nombre: "Fuentes Tul Marleni Patricia", grado: "2do B"},
+{nombre: "Getella Pérez Angel José Julián", grado: "2do B"},
+{nombre: "Gómez Mejia Génesis Roxana", grado: "2do B"},
+{nombre: "Guerra Audon Yermi Sahir", grado: "2do B"},
+{nombre: "Gutierrez Solito Brandon Elian", grado: "2do B"},
+{nombre: "Hurtado Montepeque Rodriguo Eduardo", grado: "2do B"},
+{nombre: "Itzol Monzon Jannir Alejandra", grado: "2do B"},
+{nombre: "Latin Domínguez Zeidy Maeli", grado: "2do B"},
+{nombre: "López González Oliver Anthoand", grado: "2do B"},
+{nombre: "López Zetino Wendy Sofia", grado: "2do B"},
+{nombre: "Martinez Obispo Katerine Mariné", grado: "2do B"},
+{nombre: "Mayen Cabrera Fernando Javier", grado: "2do B"},
+{nombre: "Ocoix Mendez Keyli Mariana", grado: "2do B"},
+{nombre: "Pérez Garcia MariCarmen Yohalin", grado: "2do B"},
+{nombre: "Pérez López Samuel Abdias", grado: "2do B"},
+{nombre: "Pineda Paz Samuel Efrain", grado: "2do B"},
+{nombre: "Torres García Nataly Angely", grado: "2do B"},
+{nombre: "Chibalán Sosof Eddy Arnoldo", grado: "Tercero A"},
+{nombre: "Escobar Cruz Luis Josué", grado: "Tercero A"},
+{nombre: "Feliciando Miranda Saida Marisol", grado: "Tercero A"},
+{nombre: "Fernández López Mydeline Nicol", grado: "Tercero A"},
+{nombre: "Friely Cabrera Kimberly Sofia", grado: "Tercero A"},
+{nombre: "Garay Perez Carlos Augusto", grado: "Tercero A"},
+{nombre: "García López Melanie Jimena", grado: "Tercero A"},
+{nombre: "Garcia Navarrez Brayan David", grado: "Tercero A"},
+{nombre: "Gomez Martinez Dana Mishel", grado: "Tercero A"},
+{nombre: "González Flores Heidria Josmarly", grado: "Tercero A"},
+{nombre: "Grijalva López Anderson Jasiel", grado: "Tercero A"},
+{nombre: "Hernández Pérez Melvin Asael", grado: "Tercero A"},
+{nombre: "José Esteban", grado: "Tercero A"},
+{nombre: "Juarez Ramírez Kevin Salvador", grado: "Tercero A"},
+{nombre: "Lopez Davila Lourdes Asusena", grado: "Tercero A"},
+{nombre: "Parada Macha Luis Alejandro", grado: "Tercero A"},
+{nombre: "Pérez Pascual Angy Vanessa", grado: "Tercero A"},
+{nombre: "Puac Minchez Carlos Alexander", grado: "Tercero A"},
+{nombre: "Rodríguez López Cristofer Josue", grado: "Tercero A"},
+{nombre: "Siguaque Estrada Pablo Adrian", grado: "Tercero A"},
+{nombre: "Barillas Calderas Keliver Osvanni", grado: "Tercero B"},
+{nombre: "Cristales Rivera Jefferson Steven", grado: "Tercero B"},
+{nombre: "Cuc Baten Naomi Yanet", grado: "Tercero B"},
+{nombre: "Godoy Chital Cesar Yadiel", grado: "Tercero B"},
+{nombre: "López Tinti Estefany Mishell", grado: "Tercero B"},
+{nombre: "Mejia Macario Jackeline Mishell", grado: "Tercero B"},
+{nombre: "Mendez Florian Brandon Antonio", grado: "Tercero B"},
+{nombre: "Ortiz Ochaita Kenia Cristel", grado: "Tercero B"},
+{nombre: "Pérez Pérez Lineth Naomy", grado: "Tercero B"},
+{nombre: "Rosales Garcia Kaleb Eliazib", grado: "Tercero B"},
+{nombre: "Rustrian Gómez Jefferson David", grado: "Tercero B"},
+{nombre: "Sacalxot Cruz Angel Eduardo", grado: "Tercero B"},
+{nombre: "Toj Rosales Jehizel Jasiel", grado: "Tercero B"},
+{nombre: "Torres Maldonado Jackeline Dariana", grado: "Tercero B"},
+{nombre: "Tum Nolasco Ariana Camila", grado: "Tercero B"},
+{nombre: "Vasquez Dieguez Yuliana Yamilet", grado: "Tercero B"},
+{nombre: "Vásquez Guzmán Maria Concepción", grado: "Tercero B"},
+{nombre: "Villela Gálvez Dulce Daniel", grado: "Tercero B"},
+{nombre: "Acajabón Hilario David Ottoniel", grado: "4to Bach A"},
+{nombre: "Cahuec Gallardo Kevin Alejandro", grado: "4to Bach A"},
+{nombre: "Chigüichon Lorenzo Angely Natali", grado: "4to Bach A"},
+{nombre: "Chij Lucas Jeferson Estuardo", grado: "4to Bach A"},
+{nombre: "Cordón Cruz Elsa Jimena", grado: "4to Bach A"},
+{nombre: "De León Sanchez Gunith Eduardo", grado: "4to Bach A"},
+{nombre: "Gálvez Mijangos Cristopher Isaac", grado: "4to Bach A"},
+{nombre: "Godines García Geovani Alexander", grado: "4to Bach A"},
+{nombre: "González Carrillo Jessenia Phaola", grado: "4to Bach A"},
+{nombre: "Gutierrez Lopez Carlos David", grado: "4to Bach A"},
+{nombre: "Hernández Morente Marielos Elizabeth", grado: "4to Bach A"},
+{nombre: "Hernández Pérez Jose Daniel", grado: "4to Bach A"},
+{nombre: "Hilario Palacios Anyeliy Jimena", grado: "4to Bach A"},
+{nombre: "López Cabrera Antony Bernabé", grado: "4to Bach A"},
+{nombre: "Marcos Leiva Cesar Ivan", grado: "4to Bach A"},
+{nombre: "Mejia Ramírez Jostin Alexander", grado: "4to Bach A"},
+{nombre: "Mendoza Martinez Erick Alexander", grado: "4to Bach A"},
+{nombre: "Morales Cute Anderson Noe", grado: "4to Bach A"},
+{nombre: "Pérez Elias Daniel", grado: "4to Bach A"},
+{nombre: "Pu Martin Angel José", grado: "4to Bach A"},
+{nombre: "Sanchez Rousselin Bábara Carolina", grado: "4to Bach A"},
+{nombre: "Santiago Hernández Krishna Analy", grado: "4to Bach A"},
+{nombre: "Vasquez López Victor Leonel", grado: "4to Bach A"},
+{nombre: "Velasquez Gonzalez Joshua Raul", grado: "4to Bach A"},
+{nombre: "Arreaza Najera Esmeralda Eunice", grado: "4to Bach B"},
+{nombre: "Cancax Corominar Melany Fabiola", grado: "4to Bach B"},
+{nombre: "Castillo Vail Angel Gabriel", grado: "4to Bach B"},
+{nombre: "Cortez Pérez Bryan Josué", grado: "4to Bach B"},
+{nombre: "Gómez Godínez Marcos Rubén", grado: "4to Bach B"},
+{nombre: "Hernández Escobar Junior Alexis", grado: "4to Bach B"},
+{nombre: "Hernández González Kimberly Noemí", grado: "4to Bach B"},
+{nombre: "Hernández Saban Iliana Pamela", grado: "4to Bach B"},
+{nombre: "Juarez Ramírez Ruth Azucena", grado: "4to Bach B"},
+{nombre: "Lobos Martinez Yamileth Ashly", grado: "4to Bach B"},
+{nombre: "Lobos Vasquez Miguel Angel", grado: "4to Bach B"},
+{nombre: "López Sacap Dayana Lisseth", grado: "4to Bach B"},
+{nombre: "Marroquin Quel Kleyver Estuardo", grado: "4to Bach B"},
+{nombre: "Ramirez Grave Cristian Samuel", grado: "4to Bach B"},
+{nombre: "Raymundo Guansin José Manuel", grado: "4to Bach B"},
+{nombre: "Robledo Villela Josue David", grado: "4to Bach B"},
+{nombre: "Sanchinelli Ramirez Kenet Augusto", grado: "4to Bach B"},
+{nombre: "Vásquez Guzmán Anderson Yahir", grado: "4to Bach B"},
+{nombre: "Velasquez Pineda Marilin Dayana", grado: "4to Bach B"},
+{nombre: "Villanueva Mendez Yasmin Emily", grado: "4to Bach B"},
+{nombre: "Aquino Herrera Emily Alessandra", grado: "4to Diseño"},
+{nombre: "Barrios Gonzalez Margareth Rubi", grado: "4to Diseño"},
+{nombre: "Carrillo Ramírez Fernando Daniel", grado: "4to Diseño"},
+{nombre: "Contreras Monterroso Jennifer Abigail", grado: "4to Diseño"},
+{nombre: "Jiménez Ramos Alex Giovanni", grado: "4to Diseño"},
+{nombre: "Mejía Garcia Alisson Nahomi", grado: "4to Diseño"},
+{nombre: "Orantes Arroyo Daphne Sofia", grado: "4to Diseño"},
+{nombre: "Pérez Ruiz Génesis Adriana Estrella", grado: "4to Diseño"},
+{nombre: "Riso Dionicio Eunice Abigail", grado: "4to Diseño"},
+{nombre: "Serrano Parada Allison Yamileth", grado: "4to Diseño"},
+{nombre: "Vasquez Vasquez Ingrid Fabiola", grado: "4to Diseño"},
+{nombre: "Velasquez Gómez Flor de Maria", grado: "4to Diseño"},
+{nombre: "Velasquez Zacarías Rodrigo Miguel", grado: "4to Diseño"},
+{nombre: "Villatoro Ramirez Daniela Sarai", grado: "4to Diseño"},
+{nombre: "Aceituno Zepeda Juan José", grado: "4A"},
+{nombre: "Duran González Marlin Gricelda", grado: "4A"},
+{nombre: "Erazo Cladero Martín Samuel", grado: "4A"},
+{nombre: "Fuentes Yos Yasmi Fabiola", grado: "4A"},
+{nombre: "Juarros Paz Michael Antonio", grado: "4A"},
+{nombre: "Marchorro González Frank Yahir Salvador", grado: "4A"},
+{nombre: "Romero Rosa Alisson Saraí", grado: "4A"},
+{nombre: "Tupul Carrera Marylin Pamela", grado: "4A"},
+{nombre: "Aguilar Mateo Estuardo Vinivio", grado: "4C"},
+{nombre: "Barrios Cardona Aylin Melisa", grado: "4C"},
+{nombre: "Chitic Xirum Wendy Paola", grado: "4C"},
+{nombre: "Chuc Morales Kimberly Sarai", grado: "4C"},
+{nombre: "Garcia Zúñiga Nayeli Fernanda", grado: "4C"},
+{nombre: "Giménez Cuc Vivian Elizabeth", grado: "4C"},
+{nombre: "Gonzalez Rodas Elisabet Noemi", grado: "4C"},
+{nombre: "Hernandez Dimas Kimberly Adriana", grado: "4C"},
+{nombre: "Morales D la Cruz Obed Joselito", grado: "4C"},
+{nombre: "Pérez Álvarez Rigoberto Elías", grado: "4C"},
+{nombre: "Pirir Alvarez Marta Azucena", grado: "4C"},
+{nombre: "Sotoj Marroquin Claudia Elizabeth", grado: "4C"},
+{nombre: "Terron García Darlyng Samanta", grado: "4C"},
+{nombre: "Chichoj Sián Jaquelinne Amisadaí", grado: "4S"},
+{nombre: "de Leon Ramírez Sandra Carolina", grado: "4S"},
+{nombre: "Gabriel Sánchez Nataly Pamela", grado: "4S"},
+{nombre: "Godínez Muñoz Sulema Nicol", grado: "4S"},
+{nombre: "González García Angielyn Melissa", grado: "4S"},
+{nombre: "Monzón Pérez Kimberly Brishtesh", grado: "4S"},
+{nombre: "Suar Larias Leyli Mariela Beatriz", grado: "4S"},
+{nombre: "Agbay Lorenzo Von Cristian", grado: "5A"},
+{nombre: "Barrios del Cid Jehimy Daniela", grado: "5A"},
+{nombre: "Cabrera Aguilar Keyla Yamileth", grado: "5A"},
+{nombre: "Castro Conde Brittany Esperanza", grado: "5A"},
+{nombre: "Coj Velasquez Aylin Jimena", grado: "5A"},
+{nombre: "Coy Girón Jesis David", grado: "5A"},
+{nombre: "García Godoy Astrid Selena", grado: "5A"},
+{nombre: "García López Haylin Anai", grado: "5A"},
+{nombre: "Gonzalez Ortega Allison Saraí", grado: "5A"},
+{nombre: "Larias Sontay Stephanie Raquel", grado: "5A"},
+{nombre: "Méndez Florian Esdras Eduardo", grado: "5A"},
+{nombre: "Mendez Batz Jesseni Margarita", grado: "5A"},
+{nombre: "Noj Gonzalez Allison Rosmery", grado: "5A"},
+{nombre: "Nolasco Yool Allison Saraí", grado: "5A"},
+{nombre: "Oscal Mansilla Antony Rafael", grado: "5A"},
+{nombre: "Parada Gomez Katerin Clarissa", grado: "5A"},
+{nombre: "Puzul Coché Heydi Nohemí Riveras Herrera", grado: "5A"},
+{nombre: "Solis Sosa Lizbeth Lorena", grado: "5A"},
+{nombre: "Tiul Vicente Brenda Sucely", grado: "5A"},
+{nombre: "Vásquez Velásquez Daine Daniela", grado: "5A"},
+{nombre: "Velásquez Zacarias Rosmery Vicenta", grado: "5A"},
+{nombre: "Zetino Yoisin Hilari", grado: "5A"},
+{nombre: "Chinchilla García Cinthia Analis", grado: "5C"},
+{nombre: "Chó Fajardo Jaime Rubelsi Lizandro", grado: "5C"},
+{nombre: "Cocon González Hugo Elias", grado: "5C"},
+{nombre: "de León Torres Natali Gabriela", grado: "5C"},
+{nombre: "Hernandez Robledo Josué Abraham", grado: "5C"},
+{nombre: "Lara López Andrea Gloricel", grado: "5C"},
+{nombre: "Lares Ixtuc Kenia Fabiola", grado: "5C"},
+{nombre: "Molina Rodas Gladis Luzmila", grado: "5C"},
+{nombre: "Reyes Isep Bárbara Alexandra", grado: "5C"},
+{nombre: "Rodas Pérez Kimberly Daniela", grado: "5C"},
+{nombre: "Sul Hernandez Isaías Misael", grado: "5C"},
+{nombre: "Vega Lucas Jefferson Jancarlo", grado: "5C"},
+{nombre: "López Juárez Lesly Adaly", grado: "5S"},
+{nombre: "Jorge Pol Wendy Esperanza", grado: "5S"},
+{nombre: "Garcia Vasquez Blanca Josefa", grado: "5S"},
+{nombre: "Ajanel Celso Madelyn Yojana", grado: "5S"},
+{nombre: "Agustin Guevara Daniel de Jesus", grado: "5BCA"},
+{nombre: "Alfaro Mezquite Jeremy Tardelí", grado: "5BCA"},
+{nombre: "Alvarado Rodriguez Luis Isaac", grado: "5BCA"},
+{nombre: "Barrera Monroy Kimberly Gabriela", grado: "5BCA"},
+{nombre: "Castillo Jiménez Britani Jhanyli", grado: "5BCA"},
+{nombre: "Concua Cuevas Jeyson Fernando", grado: "5BCA"},
+{nombre: "Coy Rudy José", grado: "5BCA"},
+{nombre: "Garay Pérez Maria Daniela", grado: "5BCA"},
+{nombre: "Garcia Rodríguez Henry Eliud", grado: "5BCA"},
+{nombre: "Gomez Alvarado Antoni Edin", grado: "5BCA"},
+{nombre: "Gonzalez de Jesús José Francisco", grado: "5BCA"},
+{nombre: "Herrera Ramírez Carmen Lisset", grado: "5BCA"},
+{nombre: "Luna Luna Byron Estuardo", grado: "5BCA"},
+{nombre: "Mazariegos López Anderson Abraham", grado: "5BCA"},
+{nombre: "Monroy Ordoñez Jorge Julio", grado: "5BCA"},
+{nombre: "Orantes Arroyo Carlos Andres", grado: "5BCA"},
+{nombre: "Pérez Garcia Dayrin Dayana", grado: "5BCA"},
+{nombre: "Pineda Paz Adriana Esther", grado: "5BCA"},
+{nombre: "Puac Minchez Estrella Noem", grado: "5BCA"},
+{nombre: "Ramos Sosa Ingrid Noemí", grado: "5BCA"},
+{nombre: "Revolorio Cardona Mario André", grado: "5BCA"},
+{nombre: "Rodriguez Brito Jony Leonel", grado: "5BCA"},
+{nombre: "Velásquez Cumes Gerber Ariel", grado: "5BCA"},
+{nombre: "Aguilar Mateo Marvin Sebastian", grado: "5BCB"},
+{nombre: "Alvizures Mezquite Kevin Omar", grado: "5BCB"},
+{nombre: "Antonio Contreras Carlos Francisco", grado: "5BCB"},
+{nombre: "Arrecis Gómez Eduardo Antonio", grado: "5BCB"},
+{nombre: "Batres Alvarado Dayana Nicol", grado: "5BCB"},
+{nombre: "Cashun Urizar Laura Sofia", grado: "5BCB"},
+{nombre: "Castellanos Morales Rodrigo Alejandro", grado: "5BCB"},
+{nombre: "Chivalan Sosof Yeni Yesenia", grado: "5BCB"},
+{nombre: "Coz Jorge Saira Vanesa", grado: "5BCB"},
+{nombre: "Herrera Enriquez Selvin Emanuel", grado: "5BCB"},
+{nombre: "Herrarte Rodriguez Jeimy Aida", grado: "5BCB"},
+{nombre: "Lutín Gamarro Mayly Gimena", grado: "5BCB"},
+{nombre: "Martínez Pérez Ana Gabriela", grado: "5BCB"},
+{nombre: "Mejía Macario Mari Melisa", grado: "5BCB"},
+{nombre: "Morales Sucuquí Rudy Moisés", grado: "5BCB"},
+{nombre: "Ordoñez Itzol David Alejandro", grado: "5BCB"},
+{nombre: "Pelaez Tul Angelo Abysai", grado: "5BCB"},
+{nombre: "Ramírez Donis Jeferson Abimael", grado: "5BCB"},
+{nombre: "Rosales Reyes Angel Ismael", grado: "5BCB"},
+{nombre: "Solano Rivera Cristopher Alexander", grado: "5BCB"},
+{nombre: "Sosa Sherly Vanessa", grado: "5BCB"},
+{nombre: "Barcenes López Febe Rachel", grado: "5BD"},
+{nombre: "Bravo Romero Mélany Adaly", grado: "5BD"},
+{nombre: "Friely Cabrera Angeline Nicole", grado: "5BD"},
+{nombre: "Garcia Marroquin Jose Pablo", grado: "5BD"},
+{nombre: "Herrera Garcia Maryori Alondra", grado: "5BD"},
+{nombre: "Lopez Noj Angel Daniel", grado: "5BD"},
+{nombre: "Orellana Chacon Fabian Alejandro", grado: "5BD"},
+{nombre: "Peralta Gonzalez Neitan Andre", grado: "5BD"},
+{nombre: "Rizo Dionicio Katherine Mishell", grado: "5BD"},
+{nombre: "Trejo De la Cruz Elizabeth Nicol", grado: "5BD"},
+{nombre: "Trujillo Cruz José Emanúel", grado: "5BD"},
+{nombre: "Carballo Recinos Cristian Joel", grado: "6A"},
+{nombre: "Chachalac Santos Anderson Gabriel", grado: "6A"},
+{nombre: "Cosajay Cruz Jefferson Stiven", grado: "6A"},
+{nombre: "Figueroa Aquino Estefani Yajaira", grado: "6A"},
+{nombre: "Hidalgo Tomas Antoni Fabian", grado: "6A"},
+{nombre: "Jorge Pol Maynor Tomás", grado: "6A"},
+{nombre: "López Gonzalez Cristel Anelisse", grado: "6A"},
+{nombre: "Orellana García Limny Melissa", grado: "6A"},
+{nombre: "Rosales Gomez Carol Haydee", grado: "6A"},
+{nombre: "Tiño Macario María Luisa", grado: "6A"},
+{nombre: "Vásquez Chay Blanca Isabela", grado: "6A"},
+{nombre: "Aguilon Aguilon Ruth Nohemi", grado: "6C"},
+{nombre: "Auyon Revolorio Dayana Eunice", grado: "6C"},
+{nombre: "Cabrera López Justhyn Eliel", grado: "6C"},
+{nombre: "Cabrera Patzan Susana Guadalupe", grado: "6C"},
+{nombre: "Carrillo Salazar Cristian Adolfo", grado: "6C"},
+{nombre: "Castellanos Acajabon Abby Dessire Guadalupe", grado: "6C"},
+{nombre: "Felipe Jom Shayna María Daly", grado: "6C"},
+{nombre: "Gonzalez Rodas Jonathan Joel", grado: "6C"},
+{nombre: "Hernández López Carlos Eduardo", grado: "6C"},
+{nombre: "Hernández López Cristian Josúe", grado: "6C"},
+{nombre: "Hurtado Montepeque Marta Sofía", grado: "6C"},
+{nombre: "Morales Loarca Edgar Josué", grado: "6C"},
+{nombre: "Pérez López Williams Orlando David", grado: "6C"},
+{nombre: "Pérez Valenzuela", grado: "6C"},
+{nombre: "Vásquez Guzmán Yeylin Marely", grado: "6C"},
+{nombre: "Martínez Chiguichon Gabriela Paola", grado: "6S"},
+{nombre: "Cbrera Palma Cindy Paola", grado: "6S"},
+{nombre: "Méndez Ortiz Ilsi Elisabet", grado: "6S"},
+{nombre: "Zepeda Vásquez  Nancy Paola", grado: "6S"},
+{nombre: "Yol Quiejú Karla Matilde", grado: "6S"},
+{nombre: "Pascual Pedro Lilian Melisa", grado: "6S"}
 ];
 
 function buscar(){
@@ -255,63 +671,61 @@ function buscar(){
     const texto = document
         .getElementById("busqueda")
         .value
-        .toLowerCase()
-        .trim();
+        .trim()
+        .toLowerCase();
 
-    const resultado =
-        estudiantes.filter(estudiante =>
-            estudiante.nombre
-            .toLowerCase()
-            .includes(texto)
-        );
+    const div = document.getElementById("resultado");
 
-    const div =
-        document.getElementById("resultado");
 
-    if(resultado.length === 0){
 
-        div.innerHTML =
-        "<p>No se encontró ningún estudiante.</p>";
 
+
+
+    const resultados = estudiantes.filter(estudiante =>
+        estudiante.nombre.toLowerCase().includes(texto)
+    );
+
+
+
+
+
+    if(resultados.length === 0){
+        div.innerHTML = "<p>No se encontró ningún estudiante.</p>";
         return;
     }
 
-    div.innerHTML = resultado.map(estudiante =>
+    div.innerHTML = resultados.map(estudiante => `
+        <div class="card">
 
-        `<div class="card">
 
             <h2>${estudiante.nombre}</h2>
+            <p>Grado: ${estudiante.grado}</p>
+        </div>
+    `).join("");
 
-            <p>
-                Grado:
-                ${estudiante.grado}
-            </p>
 
-        </div>`
 
-    ).join("");
+
+
+
 
 }
 
-document
-.getElementById("busqueda")
-.addEventListener("keyup", function(event){
 
-    if(event.key === "Enter"){
-        buscar();
-    }
 
-});
+
+
+
+
 
 function abrirMenu(){
-    document.getElementById("menuLateral").style.left = "0";
+    document.getElementById("menuLateral").style.right = "0";
 }
 
 function cerrarMenu(){
-    document.getElementById("menuLateral").style.left = "-300px";
+    document.getElementById("menuLateral").style.right = "-300px";
 }
 
 </script>
 
 </body>
-</html>
